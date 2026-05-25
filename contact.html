@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>AI Solution - Contact Us</title>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, sans-serif;
+    }
+
+    body{
+      background:#f5f5f5;
+      color:#111;
+    }
+
+    .container{
+      width:90%;
+      margin:auto;
+    }
+
+    /* HEADER */
+
+    header{
+      background:white;
+      border-bottom:2px solid #ddd;
+      padding:20px 0;
+    }
+
+    .navbar{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+
+    .logo{
+      width:60px;
+      height:60px;
+      border:2px solid black;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:bold;
+    }
+
+    nav ul{
+      display:flex;
+      gap:35px;
+      list-style:none;
+    }
+
+    nav ul li a{
+      text-decoration:none;
+      color:black;
+      font-size:17px;
+      transition:0.3s;
+    }
+
+    nav ul li a:hover{
+      color:#0077ff;
+    }
+
+    /* CONTACT SECTION */
+
+    .contact-section{
+      padding:50px 0;
+    }
+
+    .page-title{
+      text-align:center;
+      border:2px solid black;
+      width:250px;
+      margin:0 auto 25px;
+      padding:10px;
+      font-size:38px;
+      background:white;
+    }
+
+    .line{
+      width:80%;
+      height:10px;
+      background:#ddd;
+      margin:0 auto 40px;
+    }
+
+    .contact-wrapper{
+      display:grid;
+      grid-template-columns:1fr 2fr 1fr;
+      gap:40px;
+    }
+
+    /* LEFT SIDE */
+
+    .contact-card{
+      background:white;
+      padding:25px;
+      border:2px solid #ccc;
+      margin-bottom:30px;
+    }
+
+    .contact-card h2{
+      margin-bottom:25px;
+      text-align:center;
+    }
+
+    .detail{
+      margin-bottom:25px;
+      font-size:18px;
+    }
+
+    .map-box{
+      text-align:center;
+    }
+
+    .map-box img{
+      width:100%;
+      border:2px solid #ccc;
+    }
+
+    /* FORM */
+
+    .form-section{
+      background:white;
+      padding:30px;
+      border:2px solid #ddd;
+    }
+
+    .form-section h2{
+      text-align:center;
+      margin-bottom:30px;
+    }
+
+    .form-group{
+      margin-bottom:20px;
+    }
+
+    .form-group label{
+      display:block;
+      margin-bottom:8px;
+      font-weight:bold;
+    }
+
+    .form-group input,
+    .form-group textarea{
+      width:100%;
+      padding:12px;
+      border:2px solid #bbb;
+      font-size:16px;
+    }
+
+    .submit-btn{
+      padding:12px 35px;
+      border:none;
+      background:#0077ff;
+      color:white;
+      font-size:16px;
+      cursor:pointer;
+      border-radius:5px;
+      transition:0.3s;
+    }
+
+    .submit-btn:hover{
+      background:#005ed1;
+    }
+
+    /* AI CHAT */
+
+    .chat-box{
+      background:white;
+      border:2px solid #ccc;
+      height:fit-content;
+    }
+
+    .chat-header{
+      background:#f2f2f2;
+      padding:15px;
+      font-size:22px;
+      font-weight:bold;
+      border-bottom:2px solid #ccc;
+    }
+
+    .chat-body{
+      padding:15px;
+    }
+
+    .chat-option{
+      border:2px solid #ccc;
+      padding:12px;
+      margin-bottom:12px;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .chat-option:hover{
+      background:#f5f5f5;
+    }
+
+    /* CTA SECTION */
+
+    .cta-section{
+      margin:60px auto;
+    }
+
+    .cta-content{
+      background:white;
+      border:2px solid #ccc;
+      padding:30px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+
+    .cta-content h2{
+      font-size:32px;
+    }
+
+    .cta-content button{
+      padding:12px 25px;
+      border:2px solid black;
+      background:white;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .cta-content button:hover{
+      background:black;
+      color:white;
+    }
+
+    /* FOOTER */
+
+    footer{
+      background:white;
+      border-top:2px solid #ccc;
+      padding-top:40px;
+    }
+
+    .footer-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+      gap:30px;
+      padding-bottom:30px;
+    }
+
+    .footer-logo{
+      width:60px;
+      height:60px;
+      border:2px solid black;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin-bottom:20px;
+      font-weight:bold;
+    }
+
+    footer h3{
+      margin-bottom:20px;
+    }
+
+    footer ul{
+      list-style:none;
+    }
+
+    footer ul li{
+      margin-bottom:12px;
+    }
+
+    .newsletter{
+      display:flex;
+      margin-top:15px;
+    }
+
+    .newsletter input{
+      flex:1;
+      padding:10px;
+      border:2px solid #ccc;
+    }
+
+    .newsletter button{
+      width:50px;
+      border:none;
+      background:#0077ff;
+      color:white;
+      cursor:pointer;
+    }
+
+    .copyright{
+      text-align:center;
+      border-top:1px solid #ccc;
+      padding:20px;
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:1000px){
+
+      .contact-wrapper{
+        grid-template-columns:1fr;
+      }
+
+      .cta-content{
+        flex-direction:column;
+        gap:20px;
+        text-align:center;
+      }
+
+      nav ul{
+        gap:15px;
+        flex-wrap:wrap;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+
+  <header>
+
+    <div class="container navbar">
+
+      <div class="logo">LOGO</div>
+
+      <nav>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Solutions</a></li>
+          <li><a href="#">Insights</a></li>
+          <li><a href="#">Testimonials</a></li>
+          <li><a href="#">Gallery</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </nav>
+
+    </div>
+
+  </header>
+
+  <!-- CONTACT SECTION -->
+
+  <section class="contact-section container">
+
+    <h1 class="page-title">Contact Us</h1>
+
+    <div class="line"></div>
+
+    <div class="contact-wrapper">
+
+      <!-- LEFT SIDE -->
+
+      <div class="left-section">
+
+        <div class="contact-card">
+
+          <h2>Contact Details</h2>
+
+          <div class="detail">
+            📍 Sunderland
+          </div>
+
+          <div class="detail">
+            📞 +1 (555) 123-4567
+          </div>
+
+          <div class="detail">
+            ✉ info@ai-solution.com
+          </div>
+
+        </div>
+
+        <div class="map-box">
+
+          <h2>Map</h2>
+
+          <img src="https://maps.gstatic.com/tactile/basepage/pegman_sherlock.png" alt="Map">
+
+        </div>
+
+      </div>
+
+      <!-- CONTACT FORM -->
+
+      <div class="form-section">
+
+        <h2>Contact Form</h2>
+
+        <form id="contactForm">
+
+          <div class="form-group">
+            <label>Name:</label>
+            <input type="text" required>
+          </div>
+
+          <div class="form-group">
+            <label>Email Address:</label>
+            <input type="email" required>
+          </div>
+
+          <div class="form-group">
+            <label>Phone Number:</label>
+            <input type="text">
+          </div>
+
+          <div class="form-group">
+            <label>Company Name:</label>
+            <input type="text">
+          </div>
+
+          <div class="form-group">
+            <label>Country:</label>
+            <input type="text">
+          </div>
+
+          <div class="form-group">
+            <label>Job Title:</label>
+            <input type="text">
+          </div>
+
+          <div class="form-group">
+            <label>Job Details:</label>
+            <textarea rows="5"></textarea>
+          </div>
+
+          <button type="submit" class="submit-btn">
+            Submit
+          </button>
+
+        </form>
+
+      </div>
+
+      <!-- AI ASSISTANT -->
+
+      <div class="chat-box">
+
+        <div class="chat-header">
+          AI Assistant
+        </div>
+
+        <div class="chat-body">
+
+          <div class="chat-option">
+            Hello! How can I help you today?
+          </div>
+
+          <div class="chat-option">
+            Tell me about your solutions
+          </div>
+
+          <div class="chat-option">
+            I need help with a project
+          </div>
+
+          <div class="chat-option">
+            Request a demo
+          </div>
+
+          <div class="chat-option">
+            Pricing information
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- CTA -->
+
+  <section class="cta-section container">
+
+    <div class="cta-content">
+
+      <h2>
+        Ready to Transform Your Digital Workplace?
+      </h2>
+
+      <button>
+        Get In Touch
+      </button>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <div class="container footer-grid">
+
+      <div>
+
+        <div class="footer-logo">LOGO</div>
+
+        <p>
+          Innovating the future of digital workplaces
+          with AI-powered solutions.
+        </p>
+
+      </div>
+
+      <div>
+
+        <h3>Quick Links</h3>
+
+        <ul>
+          <li>Home</li>
+          <li>Solutions</li>
+          <li>Insights</li>
+          <li>Gallery</li>
+          <li>Contact Us</li>
+        </ul>
+
+      </div>
+
+      <div>
+
+        <h3>Solutions</h3>
+
+        <ul>
+          <li>Solution 1</li>
+          <li>Solution 2</li>
+          <li>Solution 3</li>
+          <li>Solution 4</li>
+        </ul>
+
+      </div>
+
+      <div>
+
+        <h3>Contact Us</h3>
+
+        <ul>
+          <li>Sunderland</li>
+          <li>+1 (555) 123-4567</li>
+          <li>info@ai-solution.com</li>
+        </ul>
+
+      </div>
+
+      <div>
+
+        <h3>Newsletter</h3>
+
+        <p>
+          Subscribe to our newsletter
+          for latest updates.
+        </p>
+
+        <div class="newsletter">
+          <input type="email" placeholder="Enter your email">
+          <button>➤</button>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="copyright">
+      © 2026 AI-Solution. All rights reserved.
+    </div>
+
+  </footer>
+
+  <script>
+
+    // CONTACT FORM ALERT
+
+    document
+      .getElementById("contactForm")
+      .addEventListener("submit", function(e){
+
+        e.preventDefault();
+
+        alert("Form submitted successfully!");
+
+      });
+
+  </script>
+
+</body>
+</html>

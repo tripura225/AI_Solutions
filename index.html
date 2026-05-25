@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Workplace Solutions</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+
+  <header>
+    <div class="container navbar">
+
+      <div class="logo">LOGO</div>
+
+      <nav>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Solutions</a></li>
+          <li><a href="#">Insights</a></li>
+          <li><a href="#">Testimonials</a></li>
+          <li><a href="#">Gallery</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </nav>
+
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+
+  <section class="hero container">
+
+    <div class="hero-text">
+      <h1>Smarter Workplaces,<br>Powered by AI</h1>
+
+      <p>
+        Transform your business with intelligent AI-powered solutions
+        designed to improve productivity, automate workflows,
+        and enhance workplace efficiency.
+      </p>
+
+      <div class="buttons">
+        <button class="btn btn-primary">Explore Solutions</button>
+        <button class="btn btn-secondary">Contact Us</button>
+      </div>
+    </div>
+
+    <div class="hero-image">
+      <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1200&auto=format&fit=crop" alt="AI Workplace">
+    </div>
+
+  </section>
+
+  <!-- MISSION -->
+
+  <section class="container mission">
+    <h2>Our Mission</h2>
+
+    <p>
+      We aim to empower organizations through innovative AI technologies
+      that streamline operations, improve decision-making,
+      and create future-ready workplaces.
+    </p>
+  </section>
+
+  <!-- FEATURES -->
+
+  <section class="container features">
+
+    <h2>What Makes Us Different?</h2>
+
+    <div class="feature-grid">
+
+      <div class="feature-card">
+        <h3>AI Automation</h3>
+
+        <p>
+          Automate repetitive tasks and optimize workflows
+          with intelligent AI systems.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <h3>Smart Analytics</h3>
+
+        <p>
+          Gain real-time insights and data-driven decisions
+          using advanced AI analytics.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <h3>24/7 AI Assistant</h3>
+
+        <p>
+          Improve customer engagement and workplace support
+          with AI-powered virtual assistants.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- CTA -->
+
+  <section class="container cta">
+
+    <h2>Ready to Unlock the Power of AI?</h2>
+
+    <p>
+      Let’s build smarter and more productive workplaces together.
+    </p>
+
+    <button class="btn btn-secondary">
+      Get In Touch
+    </button>
+
+  </section>
+
+  <!-- CHATBOT -->
+
+  <div class="chatbot-toggle" onclick="toggleChatbot()">
+    💬
+  </div>
+
+  <div class="chatbot-container" id="chatbot">
+
+    <div class="chatbot-header">
+      AI Assistant
+      <span onclick="toggleChatbot()">✖</span>
+    </div>
+
+    <div class="chatbot-body" id="chatBody">
+
+      <div class="bot-message">
+        Hello 👋 <br>
+        How can I help you today?
+      </div>
+
+    </div>
+
+    <div class="chatbot-footer">
+      <input type="text" id="userInput" placeholder="Type a message...">
+      <button onclick="sendMessage()">Send</button>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <div class="container footer-grid">
+
+      <div>
+        <div class="footer-logo">LOGO</div>
+
+        <p>
+          Innovating the future of workplaces
+          with AI-powered solutions.
+        </p>
+      </div>
+
+      <div>
+        <h3>Quick Links</h3>
+
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Solutions</a></li>
+          <li><a href="#">Insights</a></li>
+          <li><a href="#">Testimonials</a></li>
+          <li><a href="#">Gallery</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Solutions</h3>
+
+        <ul>
+          <li><a href="#">AI Automation</a></li>
+          <li><a href="#">Chatbots</a></li>
+          <li><a href="#">Smart Analytics</a></li>
+          <li><a href="#">Cloud AI</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Contact Us</h3>
+
+        <ul>
+          <li>Sunderland</li>
+          <li>+1 (555) 123-4567</li>
+          <li>info@ai-solution.com</li>
+        </ul>
+      </div>
+
+      <div class="newsletter">
+        <h3>Newsletter</h3>
+
+        <p>Subscribe for latest AI updates.</p>
+
+        <input type="email" placeholder="Enter your email">
+
+        <button class="btn btn-primary">
+          Subscribe
+        </button>
+      </div>
+
+    </div>
+
+    <div class="copyright">
+      © 2026 AI-Solution. All rights reserved.
+    </div>
+
+  </footer>
+
+  <script src="script.js"></script>
+
+</body>
+</html>

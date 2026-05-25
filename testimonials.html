@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Testimonials Page</title>
+
+<!-- FONT AWESOME -->
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<style>
+
+/* ================= GLOBAL ================= */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial, sans-serif;
+}
+
+body{
+  background:#f5f5f5;
+  color:#111;
+}
+
+a{
+  text-decoration:none;
+  color:#111;
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 40px;
+  background:#fff;
+  border-bottom:2px solid #111;
+}
+
+.logo{
+  width:60px;
+  height:60px;
+  border:2px solid #111;
+  border-radius:50%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-weight:bold;
+}
+
+.nav-links{
+  display:flex;
+  gap:35px;
+  list-style:none;
+}
+
+.nav-links a{
+  font-weight:500;
+}
+
+/* ================= PAGE TITLE ================= */
+
+.page-title{
+  text-align:center;
+  padding:30px 20px;
+}
+
+.page-title h1{
+  display:inline-block;
+  padding:12px 40px;
+  border:2px solid #111;
+  background:#fff;
+  margin-bottom:25px;
+}
+
+.title-line{
+  width:85%;
+  height:10px;
+  background:#ddd;
+  margin:12px auto;
+}
+
+.title-line.small{
+  width:75%;
+}
+
+/* ================= FILTER ================= */
+
+.filter-section{
+  display:flex;
+  justify-content:flex-end;
+  align-items:center;
+  gap:10px;
+  padding:0 70px 20px;
+}
+
+.filter-section label{
+  font-weight:600;
+}
+
+.filter-section select{
+  padding:8px 12px;
+  border:2px solid #111;
+  border-radius:8px;
+  background:#fff;
+}
+
+/* ================= MAIN ================= */
+
+.main-section{
+  display:flex;
+  gap:30px;
+  padding:10px 70px 30px;
+  align-items:flex-start;
+}
+
+/* TESTIMONIAL GRID */
+
+.testimonial-grid{
+  flex:1;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:25px;
+}
+
+.testimonial-card{
+  background:#fff;
+  border:2px solid #111;
+  padding:18px;
+}
+
+.stars{
+  margin-bottom:25px;
+}
+
+.stars i{
+  margin-right:5px;
+}
+
+.text-bar{
+  height:10px;
+  background:#ddd;
+  margin-bottom:12px;
+}
+
+.text-bar.small{
+  width:75%;
+}
+
+.profile{
+  display:flex;
+  align-items:center;
+  gap:15px;
+  margin-top:25px;
+}
+
+.profile-icon{
+  width:45px;
+  height:45px;
+  border:2px solid #111;
+  border-radius:50%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+/* ================= AI ASSISTANT ================= */
+
+.assistant-box{
+  width:260px;
+  background:#fff;
+  border:2px solid #111;
+}
+
+.assistant-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px;
+  border-bottom:2px solid #111;
+}
+
+.assistant-body{
+  padding:15px;
+}
+
+.assistant-body p{
+  margin-bottom:15px;
+  font-size:14px;
+}
+
+.assistant-body button{
+  width:100%;
+  padding:12px;
+  margin-bottom:10px;
+  border:2px solid #111;
+  background:#fff;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.assistant-body button:hover{
+  background:#111;
+  color:#fff;
+}
+
+.assistant-user{
+  width:50px;
+  height:50px;
+  border:2px solid #111;
+  border-radius:10px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  margin:15px auto;
+}
+
+/* ================= PAGINATION ================= */
+
+.pagination{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin:10px 0 35px;
+}
+
+.pagination button{
+  padding:10px 15px;
+  border:1px solid #111;
+  background:#fff;
+  cursor:pointer;
+}
+
+.pagination .active{
+  background:#8db8ff;
+}
+
+/* ================= CTA ================= */
+
+.cta-section{
+  margin:0 50px 40px;
+  background:#fff;
+  border:2px solid #111;
+  padding:20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+}
+
+.cta-image{
+  width:70px;
+  height:60px;
+  border:2px solid #111;
+  position:relative;
+  overflow:hidden;
+}
+
+.cta-image::before,
+.cta-image::after{
+  content:"";
+  position:absolute;
+  width:2px;
+  height:200%;
+  background:#111;
+  left:50%;
+  top:-50%;
+}
+
+.cta-image::before{
+  transform:rotate(45deg);
+}
+
+.cta-image::after{
+  transform:rotate(-45deg);
+}
+
+.cta-content{
+  flex:1;
+  text-align:center;
+}
+
+.cta-content h2{
+  margin-bottom:15px;
+}
+
+.cta-line{
+  width:60%;
+  height:10px;
+  background:#ddd;
+  margin:auto;
+}
+
+.cta-btn{
+  padding:12px 28px;
+  border:2px solid #111;
+  background:#fff;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.cta-btn:hover{
+  background:#111;
+  color:#fff;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+  background:#fff;
+  border-top:2px solid #111;
+}
+
+.footer-container{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:30px;
+  padding:40px 50px;
+}
+
+.footer-col{
+  border-right:1px solid #999;
+  padding-right:20px;
+}
+
+.footer-col:last-child{
+  border-right:none;
+}
+
+.footer-logo{
+  width:90px;
+  height:50px;
+  border:2px solid #111;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  margin-bottom:20px;
+}
+
+.footer-col p{
+  line-height:1.6;
+  margin-bottom:14px;
+}
+
+.footer-col ul{
+  list-style:none;
+}
+
+.footer-col ul li{
+  margin-bottom:12px;
+}
+
+.social-icons{
+  display:flex;
+  gap:15px;
+  margin-top:20px;
+}
+
+.social-icons i{
+  width:40px;
+  height:40px;
+  border:2px solid #111;
+  border-radius:50%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.newsletter-box{
+  display:flex;
+  margin-top:20px;
+}
+
+.newsletter-box input{
+  flex:1;
+  padding:10px;
+  border:2px solid #111;
+  outline:none;
+}
+
+.newsletter-box button{
+  width:50px;
+  border:2px solid #111;
+  background:#fff;
+  cursor:pointer;
+}
+
+.copyright{
+  text-align:center;
+  padding:18px;
+  border-top:2px solid #111;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:1100px){
+
+  .main-section{
+    flex-direction:column;
+  }
+
+  .testimonial-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .assistant-box{
+    width:100%;
+  }
+
+  .footer-container{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media(max-width:768px){
+
+  .navbar{
+    flex-direction:column;
+    gap:20px;
+  }
+
+  .nav-links{
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+
+  .testimonial-grid{
+    grid-template-columns:1fr;
+  }
+
+  .filter-section{
+    justify-content:center;
+    padding:0 20px 20px;
+  }
+
+  .main-section{
+    padding:20px;
+  }
+
+  .cta-section{
+    flex-direction:column;
+    text-align:center;
+    margin:20px;
+  }
+
+  .footer-container{
+    grid-template-columns:1fr;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<header class="navbar">
+
+  <div class="logo">LOGO</div>
+
+  <nav>
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Solutions</a></li>
+      <li><a href="#">Insights</a></li>
+      <li><a href="#">Testimonials</a></li>
+      <li><a href="#">Gallery</a></li>
+      <li><a href="#">Contact Us</a></li>
+    </ul>
+  </nav>
+
+</header>
+
+<!-- ================= PAGE TITLE ================= -->
+
+<section class="page-title">
+
+  <h1>Testimonials</h1>
+
+  <div class="title-line"></div>
+  <div class="title-line small"></div>
+
+</section>
+
+<!-- ================= FILTER ================= -->
+
+<section class="filter-section">
+
+  <label>Category:</label>
+
+  <select>
+    <option>All</option>
+    <option>Business</option>
+    <option>Technology</option>
+    <option>AI</option>
+  </select>
+
+</section>
+
+<!-- ================= MAIN SECTION ================= -->
+
+<section class="main-section">
+
+  <!-- TESTIMONIAL GRID -->
+
+  <div class="testimonial-grid">
+
+    <!-- CARD -->
+    <div class="testimonial-card">
+
+      <div class="stars">
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+      </div>
+
+      <div class="text-bar"></div>
+      <div class="text-bar small"></div>
+
+      <div class="profile">
+
+        <div class="profile-icon">
+          <i class="fa-regular fa-user"></i>
+        </div>
+
+        <div class="profile-info">
+          <h4>Name</h4>
+          <p>Job title, Company</p>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- CARD -->
+    <div class="testimonial-card">
+
+      <div class="stars">
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+      </div>
+
+      <div class="text-bar"></div>
+      <div class="text-bar small"></div>
+
+      <div class="profile">
+
+        <div class="profile-icon">
+          <i class="fa-regular fa-user"></i>
+        </div>
+
+        <div class="profile-info">
+          <h4>Name</h4>
+          <p>Job title, Company</p>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- CARD -->
+    <div class="testimonial-card">
+
+      <div class="stars">
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+      </div>
+
+      <div class="text-bar"></div>
+      <div class="text-bar small"></div>
+
+      <div class="profile">
+
+        <div class="profile-icon">
+          <i class="fa-regular fa-user"></i>
+        </div>
+
+        <div class="profile-info">
+          <h4>Name</h4>
+          <p>Job title, Company</p>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- CARD -->
+    <div class="testimonial-card">
+
+      <div class="stars">
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+      </div>
+
+      <div class="text-bar"></div>
+      <div class="text-bar small"></div>
+
+      <div class="profile">
+
+        <div class="profile-icon">
+          <i class="fa-regular fa-user"></i>
+        </div>
+
+        <div class="profile-info">
+          <h4>Name</h4>
+          <p>Job title, Company</p>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- CARD -->
+    <div class="testimonial-card">
+
+      <div class="stars">
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+      </div>
+
+      <div class="text-bar"></div>
+      <div class="text-bar small"></div>
+
+      <div class="profile">
+
+        <div class="profile-icon">
+          <i class="fa-regular fa-user"></i>
+        </div>
+
+        <div class="profile-info">
+          <h4>Name</h4>
+          <p>Job title, Company</p>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- CARD -->
+    <div class="testimonial-card">
+
+      <div class="stars">
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+      </div>
+
+      <div class="text-bar"></div>
+      <div class="text-bar small"></div>
+
+      <div class="profile">
+
+        <div class="profile-icon">
+          <i class="fa-regular fa-user"></i>
+        </div>
+
+        <div class="profile-info">
+          <h4>Name</h4>
+          <p>Job title, Company</p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ================= AI ASSISTANT ================= -->
+
+  <aside class="assistant-box">
+
+    <div class="assistant-header">
+      <h3>AI Assistant</h3>
+      <span>—</span>
+    </div>
+
+    <div class="assistant-body">
+
+      <p>Hello! How can I help you today?</p>
+
+      <button>Tell me about your solutions</button>
+      <button>I need help with a project</button>
+      <button>Request a demo</button>
+      <button>Pricing information</button>
+
+    </div>
+
+    <div class="assistant-user">
+      <i class="fa-solid fa-user"></i>
+    </div>
+
+  </aside>
+
+</section>
+
+<!-- ================= PAGINATION ================= -->
+
+<section class="pagination">
+
+  <button>&lt;&lt;</button>
+  <button>&lt;</button>
+
+  <button>1</button>
+  <button>2</button>
+  <button>3</button>
+
+  <button class="active">4</button>
+
+  <button>5</button>
+  <button>6</button>
+  <button>7</button>
+  <button>8</button>
+  <button>9</button>
+  <button>10</button>
+
+  <button>&gt;</button>
+  <button>&gt;&gt;</button>
+
+</section>
+
+<!-- ================= CTA ================= -->
+
+<section class="cta-section">
+
+  <div class="cta-image"></div>
+
+  <div class="cta-content">
+
+    <h2>Ready to Transform Your Digital Workplace?</h2>
+
+    <div class="cta-line"></div>
+
+  </div>
+
+  <button class="cta-btn">Get in Touch</button>
+
+</section>
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+  <div class="footer-container">
+
+    <div class="footer-col">
+
+      <div class="footer-logo">LOGO</div>
+
+      <p>
+        Innovating the future of digital
+        workplaces with AI-Powered solutions.
+      </p>
+
+      <div class="social-icons">
+        <i class="fab fa-facebook-f"></i>
+        <i class="fab fa-linkedin-in"></i>
+        <i class="fab fa-x-twitter"></i>
+        <i class="fab fa-youtube"></i>
+      </div>
+
+    </div>
+
+    <div class="footer-col">
+
+      <h3>Quick Links</h3>
+
+      <ul>
+        <li>Home</li>
+        <li>Solutions</li>
+        <li>Insights</li>
+        <li>Testimonials</li>
+        <li>Gallery</li>
+        <li>Contact Us</li>
+      </ul>
+
+    </div>
+
+    <div class="footer-col">
+
+      <h3>Solutions</h3>
+
+      <ul>
+        <li>Solution 1</li>
+        <li>Solution 2</li>
+        <li>Solution 3</li>
+        <li>Solution 4</li>
+      </ul>
+
+    </div>
+
+    <div class="footer-col">
+
+      <h3>Contact Us</h3>
+
+      <p><i class="fa-solid fa-location-dot"></i> Sunderland</p>
+      <p><i class="fa-solid fa-phone"></i> +1 (555) 123-4567</p>
+      <p><i class="fa-solid fa-envelope"></i> info@ai-solution.com</p>
+
+    </div>
+
+    <div class="footer-col">
+
+      <h3>Newsletter</h3>
+
+      <p>
+        Subscribe to our newsletter
+        for latest updates.
+      </p>
+
+      <div class="newsletter-box">
+
+        <input type="email" placeholder="Enter your email">
+
+        <button>
+          <i class="fa-solid fa-paper-plane"></i>
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="copyright">
+    © 2026 AI-Solution. All rights reserved.
+  </div>
+
+</footer>
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script>
+
+// PAGINATION ACTIVE BUTTON
+
+const pageButtons = document.querySelectorAll(".pagination button");
+
+pageButtons.forEach((button) => {
+
+  button.addEventListener("click", () => {
+
+    pageButtons.forEach((btn) => {
+      btn.classList.remove("active");
+    });
+
+    button.classList.add("active");
+
+  });
+
+});
+
+
+// AI ASSISTANT BUTTONS
+
+const assistantButtons = document.querySelectorAll(".assistant-body button");
+
+assistantButtons.forEach((button) => {
+
+  button.addEventListener("click", () => {
+
+    alert(button.innerText);
+
+  });
+
+});
+
+</script>
+
+</body>
+</html>
