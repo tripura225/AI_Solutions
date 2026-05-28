@@ -3,63 +3,86 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>AI Workplace Solutions</title>
+  <meta name="description" content="AI Workplace Solutions - Transform your business with intelligent AI-powered solutions for productivity and workflow automation.">
+  <title>AI Workplace Solutions | Smarter Workplaces Powered by AI</title>
 
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- HEADER -->
-
+  <!-- HEADER - Modern Glassmorphism Navbar -->
   <header>
     <div class="container navbar">
-
-      <div class="logo">LOGO</div>
+      <div class="logo" onclick="location.href='index.html'" style="cursor: pointer;">
+        <span class="logo-icon">✦</span>
+        LOGO
+      </div>
 
       <nav>
         <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Solutions</a></li>
-          <li><a href="#">Insights</a></li>
-          <li><a href="#">Testimonials</a></li>
-          <li><a href="#">Gallery</a></li>
-          <li><a href="#">Contact Us</a></li>
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="solutions.html">Solutions</a></li>
+          <li><a href="insights.html">Insights</a></li>
+          <li><a href="testimonials.html">Testimonials</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
         </ul>
       </nav>
 
+      <button class="mobile-menu-btn" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
   </header>
 
-  <!-- HERO SECTION -->
+  <!-- HERO SECTION - Modern with gradient overlay -->
+  <section class="hero">
+    <div class="hero-bg-gradient"></div>
+    <div class="container hero-container">
+      <div class="hero-text">
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          Welcome to AI Workplace
+        </div>
+        <h1>Smarter Workplaces,<br>Powered by AI</h1>
+        <p>
+          Transform your business with intelligent AI-powered solutions
+          designed to improve productivity, automate workflows,
+          and enhance workplace efficiency.
+        </p>
+        <div class="buttons">
+          <button class="btn btn-primary" onclick="location.href='solutions.html'">
+            Explore Solutions <i class="fas fa-arrow-right"></i>
+          </button>
+          <button class="btn btn-secondary" onclick="location.href='contact.html'">
+            Contact Us <i class="fas fa-headset"></i>
+          </button>
+        </div>
+      </div>
 
-  <section class="hero container">
-
-    <div class="hero-text">
-      <h1>Smarter Workplaces,<br>Powered by AI</h1>
-
-      <p>
-        Transform your business with intelligent AI-powered solutions
-        designed to improve productivity, automate workflows,
-        and enhance workplace efficiency.
-      </p>
-
-      <div class="buttons">
-        <button class="btn btn-primary">Explore Solutions</button>
-        <button class="btn btn-secondary">Contact Us</button>
+      <div class="hero-image">
+        <div class="hero-image-wrapper">
+          <img src="images/AI.jpg" alt="AI Workplace">
+          <div class="image-glow"></div>
+        </div>
       </div>
     </div>
-
-    <div class="hero-image">
-      <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1200&auto=format&fit=crop" alt="AI Workplace">
-    </div>
-
   </section>
 
-  <!-- MISSION -->
-
+  <!-- MISSION SECTION - Enhanced with icon -->
   <section class="container mission">
+    <div class="mission-icon">
+      <i class="fas fa-bullseye"></i>
+    </div>
     <h2>Our Mission</h2>
-
     <p>
       We aim to empower organizations through innovative AI technologies
       that streamline operations, improve decision-making,
@@ -67,160 +90,171 @@
     </p>
   </section>
 
-  <!-- FEATURES -->
-
+  <!-- FEATURES SECTION - Premium cards with icons -->
   <section class="container features">
-
-    <h2>What Makes Us Different?</h2>
+    <div class="section-header">
+      <span class="section-tag">Why Choose Us</span>
+      <h2>What Makes Us Different?</h2>
+      <p>Discover the features that set us apart</p>
+    </div>
 
     <div class="feature-grid">
-
       <div class="feature-card">
+        <div class="card-icon">
+          <i class="fas fa-robot"></i>
+        </div>
         <h3>AI Automation</h3>
-
         <p>
           Automate repetitive tasks and optimize workflows
           with intelligent AI systems.
         </p>
+        <a href="contact.html" class="card-link">Learn more <i class="fas fa-arrow-right"></i></a>
       </div>
 
       <div class="feature-card">
+        <div class="card-icon">
+          <i class="fas fa-chart-line"></i>
+        </div>
         <h3>Smart Analytics</h3>
-
         <p>
           Gain real-time insights and data-driven decisions
           using advanced AI analytics.
         </p>
+        <a href="contact.html" class="card-link">Learn more <i class="fas fa-arrow-right"></i></a>
       </div>
 
       <div class="feature-card">
+        <div class="card-icon">
+          <i class="fas fa-headset"></i>
+        </div>
         <h3>24/7 AI Assistant</h3>
-
         <p>
           Improve customer engagement and workplace support
           with AI-powered virtual assistants.
         </p>
+        <a href="contact.html" class="card-link">Learn more <i class="fas fa-arrow-right"></i></a>
       </div>
-
     </div>
-
   </section>
 
-  <!-- CTA -->
-
-  <section class="container cta">
-
-    <h2>Ready to Unlock the Power of AI?</h2>
-
-    <p>
-      Let’s build smarter and more productive workplaces together.
-    </p>
-
-    <button class="btn btn-secondary">
-      Get In Touch
-    </button>
-
+  <!-- CTA SECTION - Modern gradient design -->
+  <section class="cta-section">
+    <div class="container cta">
+      <div class="cta-content">
+        <h2>Ready to Unlock the Power of AI?</h2>
+        <p>
+          Let's build smarter and more productive workplaces together.
+        </p>
+        <button class="btn btn-primary btn-large" onclick="location.href='contact.html'">
+          Get In Touch <i class="fas fa-arrow-right"></i>
+        </button>
+      </div>
+    </div>
   </section>
 
-  <!-- CHATBOT -->
-
+  <!-- CHATBOT - Enhanced design -->
   <div class="chatbot-toggle" onclick="toggleChatbot()">
-    💬
+    <i class="fas fa-comment-dots"></i>
   </div>
 
   <div class="chatbot-container" id="chatbot">
-
     <div class="chatbot-header">
-      AI Assistant
-      <span onclick="toggleChatbot()">✖</span>
+      <div class="chatbot-header-info">
+        <i class="fas fa-robot"></i>
+        <span>AI Assistant</span>
+        <span class="online-dot"></span>
+      </div>
+      <span onclick="toggleChatbot()" class="close-btn">✖</span>
     </div>
 
     <div class="chatbot-body" id="chatBody">
-
       <div class="bot-message">
-        Hello 👋 <br>
-        How can I help you today?
+        <div class="bot-avatar">
+          <i class="fas fa-robot"></i>
+        </div>
+        <div class="message-content">
+          Hello 👋 <br>
+          How can I help you today?
+        </div>
       </div>
-
     </div>
 
     <div class="chatbot-footer">
-      <input type="text" id="userInput" placeholder="Type a message...">
-      <button onclick="sendMessage()">Send</button>
+      <input type="text" id="userInput" placeholder="Type a message..." onkeypress="if(event.key === 'Enter') sendMessage()">
+      <button onclick="sendMessage()">
+        <i class="fas fa-paper-plane"></i>
+      </button>
     </div>
-
   </div>
 
-  <!-- FOOTER -->
-
+  <!-- FOOTER - Modern multi-column -->
   <footer>
-
     <div class="container footer-grid">
-
       <div>
-        <div class="footer-logo">LOGO</div>
-
+        <div class="footer-logo" onclick="location.href='index.html'" style="cursor: pointer;">
+          <span class="logo-icon">✦</span>
+          LOGO
+        </div>
         <p>
           Innovating the future of workplaces
           with AI-powered solutions.
         </p>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
       </div>
 
       <div>
         <h3>Quick Links</h3>
-
         <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Solutions</a></li>
-          <li><a href="#">Insights</a></li>
-          <li><a href="#">Testimonials</a></li>
-          <li><a href="#">Gallery</a></li>
-          <li><a href="#">Contact Us</a></li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="solutions.html">Solutions</a></li>
+          <li><a href="insights.html">Insights</a></li>
+          <li><a href="testimonials.html">Testimonials</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
         </ul>
       </div>
 
       <div>
         <h3>Solutions</h3>
-
         <ul>
-          <li><a href="#">AI Automation</a></li>
-          <li><a href="#">Chatbots</a></li>
-          <li><a href="#">Smart Analytics</a></li>
-          <li><a href="#">Cloud AI</a></li>
+          <li><a href="solutions.html">AI Automation</a></li>
+          <li><a href="solutions.html">Chatbots</a></li>
+          <li><a href="solutions.html">Smart Analytics</a></li>
+          <li><a href="solutions.html">Cloud AI</a></li>
         </ul>
       </div>
 
       <div>
         <h3>Contact Us</h3>
-
-        <ul>
-          <li>Sunderland</li>
-          <li>+1 (555) 123-4567</li>
-          <li>info@ai-solution.com</li>
+        <ul class="contact-info">
+          <li><i class="fas fa-map-marker-alt"></i> Sunderland</li>
+          <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+          <li><i class="fas fa-envelope"></i> info@ai-solution.com</li>
         </ul>
       </div>
 
       <div class="newsletter">
         <h3>Newsletter</h3>
-
         <p>Subscribe for latest AI updates.</p>
-
-        <input type="email" placeholder="Enter your email">
-
-        <button class="btn btn-primary">
-          Subscribe
-        </button>
+        <div class="newsletter-form">
+          <input type="email" id="newsletterEmail" placeholder="Enter your email">
+          <button class="btn btn-primary" onclick="subscribeNewsletter()">
+            Subscribe <i class="fas fa-paper-plane"></i>
+          </button>
+        </div>
       </div>
-
     </div>
 
     <div class="copyright">
-      © 2026 AI-Solution. All rights reserved.
+      <p>© 2026 AI-Solution. All rights reserved.</p>
     </div>
-
   </footer>
 
   <script src="script.js"></script>
-
 </body>
 </html>

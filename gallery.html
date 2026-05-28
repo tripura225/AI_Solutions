@@ -3,578 +3,348 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AI Solutions - Explore our gallery of AI technology, events, and team moments.">
+  <title>AI Solutions | Gallery</title>
 
-  <title>AI Solution - Gallery</title>
-
-  <style>
-
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      font-family:Arial, sans-serif;
-    }
-
-    body{
-      background:#f5f5f5;
-      color:#111;
-    }
-
-    .container{
-      width:90%;
-      margin:auto;
-    }
-
-    /* HEADER */
-
-    header{
-      background:white;
-      border-bottom:2px solid #ddd;
-      padding:20px 0;
-    }
-
-    .navbar{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-    }
-
-    .logo{
-      width:60px;
-      height:60px;
-      border:2px solid black;
-      border-radius:50%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-weight:bold;
-    }
-
-    nav ul{
-      display:flex;
-      gap:35px;
-      list-style:none;
-    }
-
-    nav ul li a{
-      text-decoration:none;
-      color:black;
-      font-size:17px;
-      transition:0.3s;
-    }
-
-    nav ul li a:hover{
-      color:#0077ff;
-    }
-
-    /* GALLERY */
-
-    .gallery-section{
-      padding:50px 0;
-    }
-
-    .page-title{
-      width:180px;
-      margin:auto;
-      text-align:center;
-      padding:10px;
-      border:2px solid black;
-      background:white;
-      font-size:36px;
-      margin-bottom:30px;
-    }
-
-    .line{
-      width:90%;
-      height:10px;
-      background:#ddd;
-      margin:15px auto;
-    }
-
-    .gallery-top{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      margin:40px 0;
-    }
-
-    .gallery-top select{
-      padding:10px;
-      border:2px solid #ccc;
-      font-size:16px;
-    }
-
-    /* GALLERY GRID */
-
-    .gallery-grid{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:30px;
-    }
-
-    .gallery-card{
-      background:white;
-      padding:15px;
-      border:2px solid #ddd;
-      text-align:center;
-      transition:0.3s;
-    }
-
-    .gallery-card:hover{
-      transform:translateY(-5px);
-      box-shadow:0 5px 15px rgba(0,0,0,0.1);
-    }
-
-    .gallery-card img{
-      width:100%;
-      height:250px;
-      object-fit:cover;
-      margin-bottom:15px;
-    }
-
-    .gallery-card h3{
-      font-size:22px;
-      margin-bottom:10px;
-    }
-
-    /* AI CHAT */
-
-    .chat-box{
-      position:fixed;
-      right:20px;
-      top:250px;
-      width:250px;
-      background:white;
-      border:2px solid #ccc;
-    }
-
-    .chat-header{
-      background:#f2f2f2;
-      padding:15px;
-      font-size:22px;
-      font-weight:bold;
-      border-bottom:2px solid #ccc;
-    }
-
-    .chat-body{
-      padding:15px;
-    }
-
-    .chat-option{
-      border:2px solid #ccc;
-      padding:10px;
-      margin-bottom:10px;
-      cursor:pointer;
-      transition:0.3s;
-    }
-
-    .chat-option:hover{
-      background:#f5f5f5;
-    }
-
-    /* PAGINATION */
-
-    .pagination{
-      display:flex;
-      justify-content:center;
-      margin:50px 0;
-      gap:10px;
-      flex-wrap:wrap;
-    }
-
-    .pagination button{
-      width:45px;
-      height:45px;
-      border:1px solid #999;
-      background:white;
-      cursor:pointer;
-      transition:0.3s;
-    }
-
-    .pagination button:hover,
-    .pagination .active{
-      background:#0077ff;
-      color:white;
-    }
-
-    /* CTA */
-
-    .cta-section{
-      margin:60px auto;
-    }
-
-    .cta-content{
-      background:white;
-      border:2px solid #ccc;
-      padding:30px;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-    }
-
-    .cta-content h2{
-      font-size:32px;
-    }
-
-    .cta-content button{
-      padding:12px 25px;
-      border:2px solid black;
-      background:white;
-      cursor:pointer;
-      transition:0.3s;
-    }
-
-    .cta-content button:hover{
-      background:black;
-      color:white;
-    }
-
-    /* FOOTER */
-
-    footer{
-      background:white;
-      border-top:2px solid #ccc;
-      padding-top:40px;
-    }
-
-    .footer-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-      gap:30px;
-      padding-bottom:30px;
-    }
-
-    .footer-logo{
-      width:60px;
-      height:60px;
-      border:2px solid black;
-      border-radius:50%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      margin-bottom:20px;
-      font-weight:bold;
-    }
-
-    footer h3{
-      margin-bottom:20px;
-    }
-
-    footer ul{
-      list-style:none;
-    }
-
-    footer ul li{
-      margin-bottom:12px;
-    }
-
-    .newsletter{
-      display:flex;
-      margin-top:15px;
-    }
-
-    .newsletter input{
-      flex:1;
-      padding:10px;
-      border:2px solid #ccc;
-    }
-
-    .newsletter button{
-      width:50px;
-      border:none;
-      background:#0077ff;
-      color:white;
-      cursor:pointer;
-    }
-
-    .copyright{
-      text-align:center;
-      border-top:1px solid #ccc;
-      padding:20px;
-    }
-
-    /* RESPONSIVE */
-
-    @media(max-width:1100px){
-
-      .gallery-grid{
-        grid-template-columns:repeat(2,1fr);
-      }
-
-      .chat-box{
-        position:static;
-        width:100%;
-        margin-top:40px;
-      }
-    }
-
-    @media(max-width:700px){
-
-      .gallery-grid{
-        grid-template-columns:1fr;
-      }
-
-      .cta-content{
-        flex-direction:column;
-        gap:20px;
-        text-align:center;
-      }
-
-      nav ul{
-        flex-wrap:wrap;
-        gap:15px;
-      }
-    }
-
-  </style>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-  <!-- HEADER -->
-
+  <!-- HEADER - Modern Glassmorphism Navbar -->
   <header>
-
     <div class="container navbar">
-
-      <div class="logo">LOGO</div>
+      <div class="logo">
+        <span class="logo-icon">✦</span>
+        AI
+      </div>
 
       <nav>
         <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Solutions</a></li>
-          <li><a href="#">Insights</a></li>
-          <li><a href="#">Testimonials</a></li>
-          <li><a href="#">Gallery</a></li>
-          <li><a href="#">Contact Us</a></li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="solutions.html">Solutions</a></li>
+          <li><a href="insights.html">Insights</a></li>
+          <li><a href="testimonials.html">Testimonials</a></li>
+          <li><a href="gallery.html" class="active">Gallery</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
         </ul>
       </nav>
 
+      <button class="mobile-menu-btn" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
-
   </header>
 
-  <!-- GALLERY -->
-
-  <section class="gallery-section container">
-
-    <h1 class="page-title">Gallery</h1>
-
-    <div class="line"></div>
-    <div class="line"></div>
-    <div class="line"></div>
-
-    <div class="gallery-top">
-
-      <div></div>
-
-      <div>
-        <label><strong>Category:</strong></label>
-
-        <select>
-          <option>All</option>
-          <option>AI Automation</option>
-          <option>Analytics</option>
-          <option>Chatbots</option>
-        </select>
+  <main>
+    <!-- PAGE HEADER SECTION -->
+    <section class="page-header">
+      <div class="container">
+        <div class="page-header-content">
+          <div class="hero-badge">
+            <span class="badge-dot"></span>
+            Visual Journey
+          </div>
+          <h1 class="page-title">Gallery</h1>
+          <p class="page-description">
+            Explore our world of AI innovation through images of our technology, 
+            events, and the talented team behind it all.
+          </p>
+        </div>
       </div>
+    </section>
 
-    </div>
-
-    <!-- GALLERY GRID -->
-
-    <div class="gallery-grid">
-
-      <div class="gallery-card">
-        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1200&auto=format&fit=crop">
-        <h3>Image 1</h3>
+    <!-- FILTER SECTION -->
+    <section class="container filter-section">
+      <div class="filter-wrapper">
+        <div class="filter-bar">
+          <label><i class="fas fa-tag"></i> Category:</label>
+          <select id="galleryFilter">
+            <option value="all">All Categories</option>
+            <option value="ai">🤖 AI Technology</option>
+            <option value="event">🎉 Events</option>
+            <option value="team">👥 Our Team</option>
+          </select>
+        </div>
+        <div class="gallery-count" id="galleryCount">
+          <i class="fas fa-images"></i>
+          <span>6 items</span>
+        </div>
       </div>
+    </section>
 
-      <div class="gallery-card">
-        <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=1200&auto=format&fit=crop">
-        <h3>Image 2</h3>
-      </div>
-
-      <div class="gallery-card">
-        <img src="https://images.unsplash.com/photo-1531746790731-6c087fecd65a?q=80&w=1200&auto=format&fit=crop">
-        <h3>Image 3</h3>
-      </div>
-
-      <div class="gallery-card">
-        <img src="https://images.unsplash.com/photo-1526378722484-bd91ca387e72?q=80&w=1200&auto=format&fit=crop">
-        <h3>Image 4</h3>
-      </div>
-
-      <div class="gallery-card">
-        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop">
-        <h3>Image 5</h3>
-      </div>
-
-      <div class="gallery-card">
-        <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1200&auto=format&fit=crop">
-        <h3>Image 6</h3>
-      </div>
-
-    </div>
-
-    <!-- PAGINATION -->
-
-    <div class="pagination">
-
-      <button>&lt;&lt;</button>
-      <button>&lt;</button>
-
-      <button>1</button>
-      <button>2</button>
-      <button>3</button>
-
-      <button class="active">4</button>
-
-      <button>5</button>
-      <button>6</button>
-      <button>7</button>
-      <button>8</button>
-      <button>9</button>
-      <button>10</button>
-
-      <button>&gt;</button>
-      <button>&gt;&gt;</button>
-
-    </div>
-
-  </section>
-
-  <!-- AI ASSISTANT -->
-
-  <div class="chat-box">
-
-    <div class="chat-header">
-      AI Assistant
-    </div>
-
-    <div class="chat-body">
-
-      <div class="chat-option">
-        Hello! How can I help you today?
-      </div>
-
-      <div class="chat-option">
-        Tell me about your solutions
-      </div>
-
-      <div class="chat-option">
-        I need help with a project
-      </div>
-
-      <div class="chat-option">
-        Request a demo
-      </div>
-
-      <div class="chat-option">
-        Pricing information
-      </div>
-
-    </div>
-
-  </div>
-
-  <!-- CTA -->
-
-  <section class="cta-section container">
-
-    <div class="cta-content">
-
-      <h2>
-        Ready to Transform Your Digital Workplace?
-      </h2>
-
-      <button>
-        Get In Touch
-      </button>
-
-    </div>
-
-  </section>
-
-  <!-- FOOTER -->
-
-  <footer>
-
-    <div class="container footer-grid">
-
-      <div>
-
-        <div class="footer-logo">LOGO</div>
-
-        <p>
-          Innovating the future of digital workplaces
-          with AI-powered solutions.
-        </p>
-
-      </div>
-
-      <div>
-
-        <h3>Quick Links</h3>
-
-        <ul>
-          <li>Home</li>
-          <li>Solutions</li>
-          <li>Insights</li>
-          <li>Gallery</li>
-          <li>Contact Us</li>
-        </ul>
-
-      </div>
-
-      <div>
-
-        <h3>Solutions</h3>
-
-        <ul>
-          <li>Solution 1</li>
-          <li>Solution 2</li>
-          <li>Solution 3</li>
-          <li>Solution 4</li>
-        </ul>
-
-      </div>
-
-      <div>
-
-        <h3>Contact Us</h3>
-
-        <ul>
-          <li>Sunderland</li>
-          <li>+1 (555) 123-4567</li>
-          <li>info@ai-solution.com</li>
-        </ul>
-
-      </div>
-
-      <div>
-
-        <h3>Newsletter</h3>
-
-        <p>
-          Subscribe to our newsletter
-          for latest updates.
-        </p>
-
-        <div class="newsletter">
-          <input type="email" placeholder="Enter your email">
-          <button>➤</button>
+    <!-- GALLERY GRID SECTION -->
+    <section class="container gallery-section">
+      <div class="gallery-grid" id="galleryGrid">
+        <div class="gallery-item" data-category="ai">
+          <div class="gallery-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=500&h=350&fit=crop" alt="AI Technology Dashboard">
+            <div class="gallery-overlay">
+              <i class="fas fa-search-plus"></i>
+              <span>AI Dashboard</span>
+            </div>
+          </div>
         </div>
 
+        <div class="gallery-item" data-category="ai">
+          <div class="gallery-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=500&h=350&fit=crop" alt="Robotics Lab">
+            <div class="gallery-overlay">
+              <i class="fas fa-search-plus"></i>
+              <span>Robotics Lab</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-category="event">
+          <div class="gallery-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=500&h=350&fit=crop" alt="Tech Conference 2026">
+            <div class="gallery-overlay">
+              <i class="fas fa-search-plus"></i>
+              <span>Tech Conference 2026</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-category="team">
+          <div class="gallery-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=500&h=350&fit=crop" alt="Our AI Team">
+            <div class="gallery-overlay">
+              <i class="fas fa-search-plus"></i>
+              <span>Our AI Team</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-category="ai">
+          <div class="gallery-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=500&h=350&fit=crop" alt="Data Center">
+            <div class="gallery-overlay">
+              <i class="fas fa-search-plus"></i>
+              <span>Data Center</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-category="event">
+          <div class="gallery-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=500&h=350&fit=crop" alt="AI Workshop">
+            <div class="gallery-overlay">
+              <i class="fas fa-search-plus"></i>
+              <span>AI Workshop</span>
+            </div>
+          </div>
+        </div>
       </div>
 
+      <!-- No Results Message -->
+      <div class="no-results" id="noResults" style="display: none;">
+        <i class="fas fa-images"></i>
+        <h3>No images found</h3>
+        <p>Try selecting a different category</p>
+      </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section class="cta-section">
+      <div class="container cta">
+        <div class="cta-content">
+          <h2>Want to See AI in Action?</h2>
+          <p>Request a personalized demo and experience our solutions firsthand.</p>
+          <button class="btn btn-primary btn-large" onclick="window.location.href='contact.html'">
+            Request a Demo <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- LIGHTBOX MODAL FOR IMAGES -->
+  <div class="lightbox-modal" id="lightboxModal">
+    <span class="close-lightbox" onclick="closeLightbox()">&times;</span>
+    <img class="lightbox-image" id="lightboxImage">
+    <div class="lightbox-caption" id="lightboxCaption"></div>
+  </div>
+
+  <!-- CHATBOT - Enhanced design -->
+  <div class="chatbot-toggle" onclick="toggleChatbot()">
+    <i class="fas fa-comment-dots"></i>
+  </div>
+
+  <div class="chatbot-container" id="chatbot">
+    <div class="chatbot-header">
+      <div class="chatbot-header-info">
+        <i class="fas fa-robot"></i>
+        <span>AI Assistant</span>
+        <span class="online-dot"></span>
+      </div>
+      <span onclick="toggleChatbot()" class="close-btn">✖</span>
+    </div>
+
+    <div class="chatbot-body" id="chatBody">
+      <div class="bot-message">
+        <div class="bot-avatar">
+          <i class="fas fa-robot"></i>
+        </div>
+        <div class="message-content">
+          Hello! Want to see our solutions in action?
+        </div>
+      </div>
+    </div>
+
+    <div class="chatbot-footer">
+      <input type="text" id="userInput" placeholder="Type a message..." onkeypress="if(event.key === 'Enter') sendMessage()">
+      <button onclick="sendMessage()">
+        <i class="fas fa-paper-plane"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- FOOTER - Modern multi-column -->
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <div class="footer-logo">
+          <span class="logo-icon">✦</span>
+          AI
+        </div>
+        <p>AI-powered solutions for modern workplaces.</p>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+
+      <div>
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="solutions.html">Solutions</a></li>
+          <li><a href="insights.html">Insights</a></li>
+          <li><a href="testimonials.html">Testimonials</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Solutions</h3>
+        <ul>
+          <li><a href="#">AI Automation</a></li>
+          <li><a href="#">Chatbots</a></li>
+          <li><a href="#">Smart Analytics</a></li>
+          <li><a href="#">Cloud AI</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Contact Us</h3>
+        <ul class="contact-info">
+          <li><i class="fas fa-map-marker-alt"></i> Sunderland</li>
+          <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+          <li><i class="fas fa-envelope"></i> info@ai-solution.com</li>
+        </ul>
+      </div>
+
+      <div class="newsletter">
+        <h3>Newsletter</h3>
+        <p>Subscribe for latest AI updates.</p>
+        <div class="newsletter-form">
+          <input type="email" placeholder="Enter your email">
+          <button class="btn btn-primary">
+            Subscribe <i class="fas fa-paper-plane"></i>
+          </button>
+        </div>
+      </div>
     </div>
 
     <div class="copyright">
-      © 2026 AI-Solution. All rights reserved.
+      <p>© 2026 AI-Solution. All rights reserved.</p>
     </div>
-
   </footer>
 
+  <script src="script.js"></script>
+  <script>
+    // Gallery Filter functionality
+    const galleryFilter = document.getElementById('galleryFilter');
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    const galleryCount = document.getElementById('galleryCount');
+    const noResults = document.getElementById('noResults');
+    const galleryGrid = document.querySelector('.gallery-grid');
+
+    function updateGalleryCount() {
+      const visibleItems = Array.from(galleryItems).filter(item => item.style.display !== 'none');
+      const count = visibleItems.length;
+      galleryCount.querySelector('span').textContent = `${count} item${count !== 1 ? 's' : ''}`;
+      
+      if (count === 0) {
+        noResults.style.display = 'block';
+        galleryGrid.style.display = 'none';
+      } else {
+        noResults.style.display = 'none';
+        galleryGrid.style.display = 'grid';
+      }
+    }
+
+    galleryFilter.addEventListener('change', function() {
+      const value = this.value;
+      galleryItems.forEach(item => {
+        if (value === 'all' || item.dataset.category === value) {
+          item.style.display = 'block';
+          item.style.animation = 'fadeUp 0.6s ease forwards';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+      updateGalleryCount();
+    });
+
+    // Lightbox functionality
+    const lightboxModal = document.getElementById('lightboxModal');
+    const lightboxImage = document.getElementById('lightboxImage');
+    const lightboxCaption = document.getElementById('lightboxCaption');
+
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      const wrapper = item.querySelector('.gallery-image-wrapper');
+      const img = wrapper.querySelector('img');
+      const caption = wrapper.querySelector('.gallery-overlay span').textContent;
+      
+      wrapper.addEventListener('click', function() {
+        lightboxModal.style.display = 'flex';
+        lightboxImage.src = img.src;
+        lightboxCaption.textContent = caption;
+      });
+    });
+
+    function closeLightbox() {
+      lightboxModal.style.display = 'none';
+    }
+
+    // Close lightbox with Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && lightboxModal.style.display === 'flex') {
+        closeLightbox();
+      }
+    });
+
+    // Close lightbox when clicking outside the image
+    lightboxModal.addEventListener('click', function(e) {
+      if (e.target === lightboxModal) {
+        closeLightbox();
+      }
+    });
+
+    // Initialize count
+    updateGalleryCount();
+  </script>
 </body>
 </html>

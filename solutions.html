@@ -1,776 +1,252 @@
-# Solutions Page — Single HTML File
-
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Solutions Page</title>
-
-  <!-- Font Awesome -->
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
-
-  <style>
-
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      font-family:Arial, sans-serif;
-    }
-
-    body{
-      background:#f5f5f5;
-      color:#111;
-    }
-
-    a{
-      text-decoration:none;
-    }
-
-    /* ================= NAVBAR ================= */
-
-    .navbar{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:18px 40px;
-      border-bottom:2px solid #111;
-      background:#fff;
-    }
-
-    .logo{
-      width:60px;
-      height:60px;
-      border:2px solid #111;
-      border-radius:50%;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      font-weight:bold;
-    }
-
-    .nav-links{
-      display:flex;
-      gap:35px;
-      list-style:none;
-    }
-
-    .nav-links a{
-      color:#111;
-      font-weight:500;
-    }
-
-    /* ================= TITLE ================= */
-
-    .page-title{
-      text-align:center;
-      padding:30px 20px;
-    }
-
-    .page-title h1{
-      display:inline-block;
-      border:2px solid #111;
-      background:#fff;
-      padding:12px 40px;
-      margin-bottom:25px;
-    }
-
-    .line{
-      width:70%;
-      height:10px;
-      background:#d9d9d9;
-      margin:15px auto;
-      border-radius:20px;
-    }
-
-    .line.small{
-      width:50%;
-    }
-
-    /* ================= MAIN ================= */
-
-    .main-section{
-      display:flex;
-      gap:40px;
-      padding:20px 60px;
-      align-items:flex-start;
-    }
-
-    .solutions-grid{
-      flex:1;
-      display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:30px;
-    }
-
-    .solution-card{
-      background:#fff;
-      border:2px solid #111;
-      padding:20px;
-    }
-
-    .solution-image{
-      height:120px;
-      border:2px solid #111;
-      position:relative;
-      overflow:hidden;
-    }
-
-    .solution-image::before,
-    .solution-image::after{
-      content:"";
-      position:absolute;
-      width:2px;
-      height:200%;
-      background:#111;
-      left:50%;
-      top:-50%;
-    }
-
-    .solution-image::before{
-      transform:rotate(45deg);
-    }
-
-    .solution-image::after{
-      transform:rotate(-45deg);
-    }
-
-    .solution-card h3{
-      text-align:center;
-      margin:18px 0;
-    }
-
-    .text-bar{
-      height:10px;
-      background:#ddd;
-      margin-bottom:12px;
-    }
-
-    .text-bar.small{
-      width:80%;
-    }
-
-    .learn-btn{
-      display:inline-block;
-      margin-top:10px;
-      color:#1565ff;
-      font-size:14px;
-      font-weight:500;
-    }
-
-    /* ================= AI ASSISTANT ================= */
-
-    .assistant-box{
-      width:260px;
-      background:#fff;
-      border:2px solid #111;
-    }
-
-    .assistant-header{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:15px;
-      border-bottom:2px solid #111;
-    }
-
-    .assistant-body{
-      padding:15px;
-    }
-
-    .assistant-body p{
-      margin-bottom:15px;
-      font-size:14px;
-    }
-
-    .assistant-body button{
-      width:100%;
-      padding:12px;
-      margin-bottom:10px;
-      border:2px solid #111;
-      background:#fff;
-      cursor:pointer;
-    }
-
-    .assistant-user{
-      width:50px;
-      height:50px;
-      border:2px solid #111;
-      border-radius:10px;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      margin:15px auto;
-    }
-
-    /* ================= INDUSTRIES ================= */
-
-    .industries{
-      padding:20px 60px 40px;
-      text-align:center;
-    }
-
-    .industries h2{
-      margin-bottom:25px;
-    }
-
-    .industry-grid{
-      display:flex;
-      justify-content:center;
-      gap:45px;
-      flex-wrap:wrap;
-    }
-
-    .industry-card{
-      width:90px;
-    }
-
-    .industry-icon{
-      width:70px;
-      height:70px;
-      border:2px solid #111;
-      margin:0 auto 10px;
-      position:relative;
-      overflow:hidden;
-    }
-
-    .industry-icon::before,
-    .industry-icon::after{
-      content:"";
-      position:absolute;
-      width:2px;
-      height:200%;
-      background:#111;
-      left:50%;
-      top:-50%;
-    }
-
-    .industry-icon::before{
-      transform:rotate(45deg);
-    }
-
-    .industry-icon::after{
-      transform:rotate(-45deg);
-    }
-
-    /* ================= CTA ================= */
-
-    .cta-section{
-      margin:0 50px 40px;
-      background:#fff;
-      border:2px solid #111;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:20px;
-      padding:20px;
-    }
-
-    .cta-image{
-      width:70px;
-      height:60px;
-      border:2px solid #111;
-      position:relative;
-      overflow:hidden;
-    }
-
-    .cta-image::before,
-    .cta-image::after{
-      content:"";
-      position:absolute;
-      width:2px;
-      height:200%;
-      background:#111;
-      left:50%;
-      top:-50%;
-    }
-
-    .cta-image::before{
-      transform:rotate(45deg);
-    }
-
-    .cta-image::after{
-      transform:rotate(-45deg);
-    }
-
-    .cta-content{
-      flex:1;
-      text-align:center;
-    }
-
-    .cta-content h2{
-      margin-bottom:15px;
-    }
-
-    .cta-line{
-      width:60%;
-      height:10px;
-      background:#ddd;
-      margin:auto;
-    }
-
-    .cta-btn{
-      padding:12px 28px;
-      border:2px solid #111;
-      background:#fff;
-      cursor:pointer;
-    }
-
-    /* ================= FOOTER ================= */
-
-    footer{
-      background:#fff;
-      border-top:2px solid #111;
-    }
-
-    .footer-container{
-      display:grid;
-      grid-template-columns:repeat(5,1fr);
-      gap:30px;
-      padding:40px 50px;
-    }
-
-    .footer-col{
-      border-right:1px solid #999;
-      padding-right:20px;
-    }
-
-    .footer-col:last-child{
-      border-right:none;
-    }
-
-    .footer-logo{
-      width:90px;
-      height:50px;
-      border:2px solid #111;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      margin-bottom:20px;
-    }
-
-    .footer-col p{
-      line-height:1.6;
-      margin-bottom:14px;
-    }
-
-    .footer-col ul{
-      list-style:none;
-    }
-
-    .footer-col ul li{
-      margin-bottom:12px;
-    }
-
-    .social-icons{
-      display:flex;
-      gap:15px;
-      margin-top:20px;
-    }
-
-    .social-icons i{
-      width:40px;
-      height:40px;
-      border:2px solid #111;
-      border-radius:50%;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-    }
-
-    .newsletter-box{
-      display:flex;
-      margin-top:20px;
-    }
-
-    .newsletter-box input{
-      flex:1;
-      padding:10px;
-      border:2px solid #111;
-      outline:none;
-    }
-
-    .newsletter-box button{
-      width:50px;
-      border:2px solid #111;
-      background:#fff;
-      cursor:pointer;
-    }
-
-    .copyright{
-      text-align:center;
-      padding:18px;
-      border-top:2px solid #111;
-    }
-
-    /* ================= RESPONSIVE ================= */
-
-    @media(max-width:1100px){
-
-      .main-section{
-        flex-direction:column;
-      }
-
-      .solutions-grid{
-        grid-template-columns:1fr;
-      }
-
-      .assistant-box{
-        width:100%;
-      }
-
-      .footer-container{
-        grid-template-columns:repeat(2,1fr);
-      }
-    }
-
-    @media(max-width:768px){
-
-      .navbar{
-        flex-direction:column;
-        gap:20px;
-      }
-
-      .nav-links{
-        flex-wrap:wrap;
-        justify-content:center;
-      }
-
-      .main-section,
-      .industries{
-        padding:20px;
-      }
-
-      .cta-section{
-        flex-direction:column;
-        text-align:center;
-        margin:20px;
-      }
-
-      .footer-container{
-        grid-template-columns:1fr;
-      }
-    }
-
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AI Solutions - Explore our comprehensive AI-powered solutions for business automation, smart analytics, chatbots, and cloud AI.">
+  <title>AI Solutions | Our Solutions</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- ================= NAVBAR ================= -->
+  <!-- HEADER - Modern Glassmorphism Navbar -->
+  <header>
+    <div class="container navbar">
+      <div class="logo">
+        <span class="logo-icon">✦</span>
+        AI
+      </div>
 
-  <header class="navbar">
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="solutions.html" class="active">Solutions</a></li>
+          <li><a href="insights.html">Insights</a></li>
+          <li><a href="testimonials.html">Testimonials</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </nav>
 
-    <div class="logo">LOGO</div>
-
-    <nav>
-      <ul class="nav-links">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Solutions</a></li>
-        <li><a href="#">Insights</a></li>
-        <li><a href="#">Testimonials</a></li>
-        <li><a href="#">Gallery</a></li>
-        <li><a href="#">Contact Us</a></li>
-      </ul>
-    </nav>
-
+      <button class="mobile-menu-btn" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
   </header>
 
-  <!-- ================= PAGE TITLE ================= -->
-
-  <section class="page-title">
-
-    <h1>Our Solutions</h1>
-
-    <div class="line"></div>
-    <div class="line small"></div>
-
-  </section>
-
-  <!-- ================= MAIN SECTION ================= -->
-
-  <section class="main-section">
-
-    <!-- SOLUTIONS GRID -->
-
-    <div class="solutions-grid">
-
-      <!-- CARD 1 -->
-
-      <div class="solution-card">
-
-        <div class="solution-image"></div>
-
-        <h3>Solution Title</h3>
-
-        <div class="text-bar"></div>
-        <div class="text-bar small"></div>
-
-        <a href="#" class="learn-btn">Learn more →</a>
-
+  <main>
+    <!-- PAGE HEADER SECTION -->
+    <section class="page-header">
+      <div class="container">
+        <div class="page-header-content">
+          <div class="hero-badge">
+            <span class="badge-dot"></span>
+            What We Offer
+          </div>
+          <h1 class="page-title">Our Solutions</h1>
+          <p class="page-description">
+            Discover our comprehensive suite of AI-powered solutions designed 
+            to transform your business operations and drive innovation.
+          </p>
+        </div>
       </div>
+    </section>
 
-      <!-- CARD 2 -->
-
-      <div class="solution-card">
-
-        <div class="solution-image"></div>
-
-        <h3>Solution Title</h3>
-
-        <div class="text-bar"></div>
-        <div class="text-bar small"></div>
-
-        <a href="#" class="learn-btn">Learn more →</a>
-
-      </div>
-
-      <!-- CARD 3 -->
-
-      <div class="solution-card">
-
-        <div class="solution-image"></div>
-
-        <h3>Solution Title</h3>
-
-        <div class="text-bar"></div>
-        <div class="text-bar small"></div>
-
-        <a href="#" class="learn-btn">Learn more →</a>
-
-      </div>
-
-      <!-- CARD 4 -->
-
-      <div class="solution-card">
-
-        <div class="solution-image"></div>
-
-        <h3>Solution Title</h3>
-
-        <div class="text-bar"></div>
-        <div class="text-bar small"></div>
-
-        <a href="#" class="learn-btn">Learn more →</a>
-
-      </div>
-
-    </div>
-
-    <!-- AI ASSISTANT -->
-
-    <aside class="assistant-box">
-
-      <div class="assistant-header">
-        <h3>AI Assistant</h3>
-        <span>—</span>
-      </div>
-
-      <div class="assistant-body">
-
-        <p>Hello! How can I help you today?</p>
-
-        <button>Tell me about your solutions</button>
-        <button>I need help with a project</button>
-        <button>Request a demo</button>
-        <button>Pricing information</button>
-
-      </div>
-
-      <div class="assistant-user">
-        <i class="fa-solid fa-user"></i>
-      </div>
-
-    </aside>
-
-  </section>
-
-  <!-- ================= INDUSTRIES ================= -->
-
-  <section class="industries">
-
-    <h2>Industries We Serve</h2>
-
-    <div class="industry-grid">
-
-      <div class="industry-card">
-        <div class="industry-icon"></div>
-        <p>Industry</p>
-      </div>
-
-      <div class="industry-card">
-        <div class="industry-icon"></div>
-        <p>Industry</p>
-      </div>
-
-      <div class="industry-card">
-        <div class="industry-icon"></div>
-        <p>Industry</p>
-      </div>
-
-      <div class="industry-card">
-        <div class="industry-icon"></div>
-        <p>Industry</p>
-      </div>
-
-      <div class="industry-card">
-        <div class="industry-icon"></div>
-        <p>Industry</p>
-      </div>
-
-    </div>
-
-  </section>
-
-  <!-- ================= CTA ================= -->
-
-  <section class="cta-section">
-
-    <div class="cta-image"></div>
-
-    <div class="cta-content">
-
-      <h2>Ready to Transform Your Digital Workplace?</h2>
-
-      <div class="cta-line"></div>
-
-    </div>
-
-    <button class="cta-btn">Get in Touch</button>
-
-  </section>
-
-  <!-- ================= FOOTER ================= -->
-
-  <footer>
-
-    <div class="footer-container">
-
-      <!-- LEFT -->
-
-      <div class="footer-col">
-
-        <div class="footer-logo">LOGO</div>
-
-        <p>
-          Innovating the future of digital
-          workplaces with AI-Powered solutions.
-        </p>
-
-        <div class="social-icons">
-          <i class="fab fa-facebook-f"></i>
-          <i class="fab fa-linkedin-in"></i>
-          <i class="fab fa-x-twitter"></i>
-          <i class="fab fa-youtube"></i>
+    <!-- SOLUTIONS GRID SECTION -->
+    <section class="container solutions-section">
+      <div class="solutions-grid">
+        <div class="solution-card">
+          <div class="card-icon">
+            <i class="fas fa-robot"></i>
+          </div>
+          <h3>AI Automation</h3>
+          <p>Automate repetitive tasks and streamline business processes with our intelligent automation solutions.</p>
+          <a href="contact.html" class="card-link">Learn More <i class="fas fa-arrow-right"></i></a>
         </div>
 
+        <div class="solution-card">
+          <div class="card-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h3>Smart Analytics</h3>
+          <p>Gain actionable insights from your data with AI-powered analytics and predictive modeling.</p>
+          <a href="contact.html" class="card-link">Learn More <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <div class="solution-card">
+          <div class="card-icon">
+            <i class="fas fa-comment-dots"></i>
+          </div>
+          <h3>AI Chatbots</h3>
+          <p>Enhance customer support with 24/7 intelligent chatbots that understand natural language.</p>
+          <a href="contact.html" class="card-link">Learn More <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <div class="solution-card">
+          <div class="card-icon">
+            <i class="fas fa-cloud"></i>
+          </div>
+          <h3>Cloud AI</h3>
+          <p>Scalable AI solutions deployed on cloud infrastructure for maximum flexibility and performance.</p>
+          <a href="contact.html" class="card-link">Learn More <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- INDUSTRIES SECTION -->
+    <section class="container industries-section">
+      <div class="section-header">
+        <span class="section-tag">Across All Sectors</span>
+        <h2>Industries We Serve</h2>
+        <p>Tailored AI solutions for every industry</p>
       </div>
 
-      <!-- QUICK LINKS -->
-
-      <div class="footer-col">
-
-        <h3>Quick Links</h3>
-
-        <ul>
-          <li>Home</li>
-          <li>Solutions</li>
-          <li>Insights</li>
-          <li>Testimonials</li>
-          <li>Gallery</li>
-          <li>Contact Us</li>
-        </ul>
-
+      <div class="industry-grid">
+        <div class="industry-card">
+          <i class="fas fa-hospital"></i>
+          <span>Healthcare</span>
+        </div>
+        <div class="industry-card">
+          <i class="fas fa-chart-pie"></i>
+          <span>Finance</span>
+        </div>
+        <div class="industry-card">
+          <i class="fas fa-shopping-cart"></i>
+          <span>Retail</span>
+        </div>
+        <div class="industry-card">
+          <i class="fas fa-industry"></i>
+          <span>Manufacturing</span>
+        </div>
+        <div class="industry-card">
+          <i class="fas fa-graduation-cap"></i>
+          <span>Education</span>
+        </div>
       </div>
+    </section>
 
-      <!-- SOLUTIONS -->
-
-      <div class="footer-col">
-
-        <h3>Solutions</h3>
-
-        <ul>
-          <li>Solution 1</li>
-          <li>Solution 2</li>
-          <li>Solution 3</li>
-          <li>Solution 4</li>
-        </ul>
-
-      </div>
-
-      <!-- CONTACT -->
-
-      <div class="footer-col">
-
-        <h3>Contact Us</h3>
-
-        <p><i class="fa-solid fa-location-dot"></i> Sunderland</p>
-        <p><i class="fa-solid fa-phone"></i> +1 (555) 123-4567</p>
-        <p><i class="fa-solid fa-envelope"></i> info@ai-solution.com</p>
-
-      </div>
-
-      <!-- NEWSLETTER -->
-
-      <div class="footer-col">
-
-        <h3>Newsletter</h3>
-
-        <p>
-          Subscribe to our newsletter
-          for latest updates.
-        </p>
-
-        <div class="newsletter-box">
-
-          <input type="email" placeholder="Enter your email">
-
-          <button>
-            <i class="fa-solid fa-paper-plane"></i>
+    <!-- CTA SECTION -->
+    <section class="cta-section">
+      <div class="container cta">
+        <div class="cta-content">
+          <h2>Ready to Transform Your Business?</h2>
+          <p>Let's discuss how our AI solutions can help you achieve your goals.</p>
+          <button class="btn btn-primary btn-large" onclick="window.location.href='contact.html'">
+            Get Started <i class="fas fa-arrow-right"></i>
           </button>
-
         </div>
+      </div>
+    </section>
+  </main>
 
+  <!-- CHATBOT - Enhanced design -->
+  <div class="chatbot-toggle" onclick="toggleChatbot()">
+    <i class="fas fa-comment-dots"></i>
+  </div>
+
+  <div class="chatbot-container" id="chatbot">
+    <div class="chatbot-header">
+      <div class="chatbot-header-info">
+        <i class="fas fa-robot"></i>
+        <span>AI Assistant</span>
+        <span class="online-dot"></span>
+      </div>
+      <span onclick="toggleChatbot()" class="close-btn">✖</span>
+    </div>
+
+    <div class="chatbot-body" id="chatBody">
+      <div class="bot-message">
+        <div class="bot-avatar">
+          <i class="fas fa-robot"></i>
+        </div>
+        <div class="message-content">
+          Hello! Ask me about our solutions.
+        </div>
+      </div>
+    </div>
+
+    <div class="chatbot-footer">
+      <input type="text" id="userInput" placeholder="Type a message..." onkeypress="if(event.key === 'Enter') sendMessage()">
+      <button onclick="sendMessage()">
+        <i class="fas fa-paper-plane"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- FOOTER - Modern multi-column -->
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <div class="footer-logo">
+          <span class="logo-icon">✦</span>
+          AI
+        </div>
+        <p>AI-powered solutions for modern workplaces.</p>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
       </div>
 
+      <div>
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="solutions.html">Solutions</a></li>
+          <li><a href="insights.html">Insights</a></li>
+          <li><a href="testimonials.html">Testimonials</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Solutions</h3>
+        <ul>
+          <li><a href="#">AI Automation</a></li>
+          <li><a href="#">Chatbots</a></li>
+          <li><a href="#">Smart Analytics</a></li>
+          <li><a href="#">Cloud AI</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Contact Us</h3>
+        <ul class="contact-info">
+          <li><i class="fas fa-map-marker-alt"></i> Sunderland</li>
+          <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+          <li><i class="fas fa-envelope"></i> info@ai-solution.com</li>
+        </ul>
+      </div>
+
+      <div class="newsletter">
+        <h3>Newsletter</h3>
+        <p>Subscribe for latest AI updates.</p>
+        <div class="newsletter-form">
+          <input type="email" placeholder="Enter your email">
+          <button class="btn btn-primary">
+            Subscribe <i class="fas fa-paper-plane"></i>
+          </button>
+        </div>
+      </div>
     </div>
 
     <div class="copyright">
-      © 2026 AI-Solution. All rights reserved.
+      <p>© 2026 AI-Solution. All rights reserved.</p>
     </div>
-
   </footer>
 
-  <!-- ================= JAVASCRIPT ================= -->
-
-  <script>
-
-    // Learn More Button Alert
-
-    const learnButtons = document.querySelectorAll('.learn-btn');
-
-    learnButtons.forEach(button => {
-      button.addEventListener('click', (e) => {
-        e.preventDefault();
-        alert('Solution details page coming soon!');
-      });
-    });
-
-
-    // AI Assistant Buttons
-
-    const assistantButtons = document.querySelectorAll('.assistant-body button');
-
-    assistantButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        alert(button.innerText);
-      });
-    });
-
-  </script>
-
+  <script src="script.js"></script>
 </body>
 </html>
-```
