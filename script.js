@@ -171,8 +171,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
-// ========== ENHANCED CHATBOT FUNCTIONALITY ==========
-// Chatbot state
+// ========== CHATBOT FUNCTIONALITY ==========
 let isTyping = false;
 let messageQueue = [];
 
@@ -182,7 +181,6 @@ function toggleChatbot() {
     chatbot.style.display = "none";
   } else {
     chatbot.style.display = "flex";
-    // Auto-scroll to bottom when opened
     const chatBody = document.getElementById("chatBody");
     if (chatBody) {
       setTimeout(() => {
@@ -194,34 +192,24 @@ function toggleChatbot() {
 
 function addMessage(text, isUser = false, isTypingIndicator = false) {
   const chatBody = document.getElementById("chatBody");
+  if (!chatBody) return;
+  
   const messageDiv = document.createElement("div");
   
   if (isUser) {
     messageDiv.classList.add("user-message");
-    messageDiv.innerHTML = `
-      <div class="message-content user-content">
-        ${escapeHtml(text)}
-      </div>
-    `;
+    messageDiv.innerHTML = `<div class="message-content user-content">${escapeHtml(text)}</div>`;
   } else if (isTypingIndicator) {
     messageDiv.classList.add("bot-message", "typing-indicator");
     messageDiv.innerHTML = `
-      <div class="bot-avatar">
-        <i class="fas fa-robot"></i>
-      </div>
-      <div class="message-content typing">
-        <span></span><span></span><span></span>
-      </div>
+      <div class="bot-avatar"><i class="fas fa-robot"></i></div>
+      <div class="message-content typing"><span></span><span></span><span></span></div>
     `;
   } else {
     messageDiv.classList.add("bot-message");
     messageDiv.innerHTML = `
-      <div class="bot-avatar">
-        <i class="fas fa-robot"></i>
-      </div>
-      <div class="message-content">
-        ${escapeHtml(text)}
-      </div>
+      <div class="bot-avatar"><i class="fas fa-robot"></i></div>
+      <div class="message-content">${escapeHtml(text)}</div>
     `;
   }
   
@@ -230,172 +218,162 @@ function addMessage(text, isUser = false, isTypingIndicator = false) {
   return messageDiv;
 }
 
-// Helper function to escape HTML
 function escapeHtml(text) {
   const div = document.createElement('div');
   div.textContent = text;
   return div.innerHTML;
 }
 
-// Enhanced bot response logic with navigation suggestions
 function getBotResponse(message) {
   const lowerMsg = message.toLowerCase();
   
-  // Greetings
-  if (lowerMsg.match(/^(hello|hi|hey|greetings|good morning|good afternoon)/)) {
+  if (lowerMsg.match(/^(hello|hi|hey|greetings)/)) {
     return "Hello! 👋 Welcome to AI Solutions. How can I assist you today?";
   }
-  
-  // Solutions/Services with navigation
   if (lowerMsg.includes("solution") || lowerMsg.includes("service") || lowerMsg.includes("offer")) {
-    return "We offer several AI-powered solutions:\n\n• 🤖 **AI Automation** - Automate repetitive tasks\n• 📊 **Smart Analytics** - Data-driven insights\n• 💬 **AI Chatbots** - 24/7 customer support\n• ☁️ **Cloud AI** - Scalable cloud solutions\n\nWhich one would you like to learn more about? You can also visit our [Solutions page](solutions.html) for more details.";
+    return "We offer:\n\n• 🤖 AI Automation\n• 📊 Smart Analytics\n• 💬 AI Chatbots\n• ☁️ Cloud AI\n\nWhich one interests you?";
   }
-  
-  // Specific solution inquiries with navigation
   if (lowerMsg.includes("automation")) {
-    return "Our AI Automation solution helps businesses streamline workflows, reduce manual tasks, and increase efficiency by up to 40%. Would you like to schedule a demo? [Learn more about AI Automation](solutions.html)";
+    return "AI Automation helps streamline workflows and reduce manual tasks by up to 40%. Would you like a demo?";
   }
-  
   if (lowerMsg.includes("analytics")) {
-    return "Smart Analytics provides real-time insights, predictive modeling, and data visualization to help you make informed business decisions. Interested in a free consultation? [Explore Smart Analytics](solutions.html)";
+    return "Smart Analytics provides real-time insights and predictive modeling to help you make data-driven decisions.";
   }
-  
   if (lowerMsg.includes("chatbot")) {
-    return "Our AI Chatbots offer natural language processing, 24/7 availability, and seamless integration with your existing systems. They can handle up to 80% of common customer queries automatically! [See Chatbot Solutions](solutions.html)";
+    return "Our AI Chatbots offer 24/7 customer support with natural language understanding. They can handle 80% of common queries!";
   }
-  
   if (lowerMsg.includes("cloud")) {
-    return "Cloud AI provides scalable, secure, and flexible AI deployment options. We support major cloud providers including AWS, Azure, and Google Cloud. Need specific requirements? [Explore Cloud AI](solutions.html)";
+    return "Cloud AI provides scalable, secure AI deployment on AWS, Azure, and Google Cloud.";
   }
-  
-  // Pricing/Cost
-  if (lowerMsg.includes("price") || lowerMsg.includes("cost") || lowerMsg.includes("pricing")) {
-    return "Our pricing is customized based on your specific needs and scale. I'd recommend scheduling a consultation with our sales team for an accurate quote. Would you like me to connect you with them? [Contact our sales team](contact.html)";
+  if (lowerMsg.includes("price") || lowerMsg.includes("cost")) {
+    return "Our pricing is customized based on your needs. Please contact our sales team for a quote!";
   }
-  
-  // Contact information with navigation
-  if (lowerMsg.includes("contact") || lowerMsg.includes("email") || lowerMsg.includes("phone") || lowerMsg.includes("reach")) {
-    return "You can reach us through:\n\n📧 **Email:** info@ai-solution.com\n📞 **Phone:** +1 (555) 123-4567\n📍 **Address:** 123 AI Boulevard, Sunderland, UK\n\nOr [fill out our contact form](contact.html) and we'll get back to you within 24 hours!";
+  if (lowerMsg.includes("contact") || lowerMsg.includes("email")) {
+    return "Email us at info@ai-solution.com or call +1 (555) 123-4567";
   }
-  
-  // Demo request with navigation
-  if (lowerMsg.includes("demo") || lowerMsg.includes("see it") || lowerMsg.includes("show me")) {
-    return "I'd be happy to help you schedule a demo! 🎯\n\nPlease [visit our contact page](contact.html) or provide your email address here, and our team will contact you within 24 hours to arrange a personalized demo of our AI solutions.";
+  if (lowerMsg.includes("demo")) {
+    return "I'd be happy to schedule a demo! Please visit our Contact page or leave your email.";
   }
-  
-  // About company
-  if (lowerMsg.includes("about") || lowerMsg.includes("company") || lowerMsg.includes("who are you")) {
-    return "AI Solutions is a leading provider of artificial intelligence solutions for modern workplaces. Founded in 2020, we help businesses transform their operations through innovative AI technology. Our mission is to make AI accessible and valuable for organizations of all sizes. [Learn more about us](index.html)";
-  }
-  
-  // Gallery/Showcase
-  if (lowerMsg.includes("gallery") || lowerMsg.includes("images") || lowerMsg.includes("photos")) {
-    return "Want to see our AI technology in action? Check out our [Gallery page](gallery.html) for images of our solutions, events, and team! 📸";
-  }
-  
-  // Insights/Blog
-  if (lowerMsg.includes("insights") || lowerMsg.includes("blog") || lowerMsg.includes("articles")) {
-    return "Stay updated with the latest AI trends and insights! Visit our [Insights page](insights.html) for articles, news, and expert analysis on artificial intelligence. 📚";
-  }
-  
-  // Testimonials
-  if (lowerMsg.includes("testimonials") || lowerMsg.includes("review") || lowerMsg.includes("client say")) {
-    return "Don't just take our word for it! Read what our clients say about their experience with AI Solutions. [View testimonials](testimonials.html) ⭐";
-  }
-  
-  // Support/Help
-  if (lowerMsg.includes("help") || lowerMsg.includes("support")) {
-    return "I'm here to help! You can ask me about:\n\n• Our AI solutions and services\n• Pricing and plans\n• Scheduling a demo\n• Contact information\n• Company information\n\nWhat would you like to know? Or [contact our support team](contact.html) for immediate assistance.";
-  }
-  
-  // Thank you
   if (lowerMsg.includes("thank")) {
-    return "You're very welcome! 😊 Is there anything else I can help you with? Feel free to [explore our website](index.html) for more information.";
+    return "You're welcome! 😊 Anything else I can help with?";
   }
-  
-  // Goodbye
-  if (lowerMsg.includes("bye") || lowerMsg.includes("goodbye")) {
-    return "Thank you for chatting with us! Have a great day! 👋 Feel free to come back if you have more questions. [Return to homepage](index.html)";
+  if (lowerMsg.includes("bye")) {
+    return "Thank you for chatting! Have a great day! 👋";
   }
-  
-  // Default response with helpful links
-  return "Thank you for your message! 💬 I'd be happy to help. You can ask me about:\n\n• Our AI solutions ([Solutions](solutions.html))\n• Pricing and demos\n• Contact information ([Contact](contact.html))\n• Company info ([Home](index.html))\n• Client success stories ([Testimonials](testimonials.html))\n\nWhat would you like to know more about?";
+  return "Thank you for your message! 💬 How can I help you? You can ask about our solutions, pricing, demos, or contact information.";
 }
 
-// Send message with typing indicator
-async function sendMessage() {
+// MAIN SEND MESSAGE FUNCTION - WORKING VERSION
+function sendMessage() {
   const input = document.getElementById("userInput");
   const message = input.value.trim();
   
   if (message === "" || isTyping) return;
   
-  // Add user message
   addMessage(message, true);
   input.value = "";
   
-  // Show typing indicator
   isTyping = true;
   const typingIndicator = addMessage("", false, true);
   
-  // Get bot response (simulate thinking time)
-  setTimeout(() => {
-    // Remove typing indicator
-    typingIndicator.remove();
-    
-    // Get and add bot response with markdown-style links converted to HTML
-    let response = getBotResponse(message);
-    // Convert [text](url) to HTML links that open in same tab
-    response = response.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="chat-link">$1</a>');
+  setTimeout(async () => {
+    if (typingIndicator && typingIndicator.remove) typingIndicator.remove();
+    const response = getBotResponse(message);
     addMessage(response, false);
-    
     isTyping = false;
     
-    // Process next message in queue if any
+    // ========== ADD THIS PART ==========
+    // Save to database
+    try {
+      const chatData = {
+        message: message,
+        response: response.replace(/<[^>]*>/g, '')
+      };
+      
+      const fetchResponse = await fetch('backend/api/chat.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(chatData)
+      });
+      
+      const result = await fetchResponse.json();
+      if (result.success) {
+        console.log('✅ Chat saved to database');
+      } else {
+        console.log('❌ Chat not saved:', result.message);
+      }
+    } catch (error) {
+      console.log('❌ Error saving chat:', error);
+    }
+    // ========== END ADDED PART ==========
+    
     if (messageQueue.length > 0) {
       const nextMsg = messageQueue.shift();
       document.getElementById("userInput").value = nextMsg;
       sendMessage();
     }
-  }, 600 + Math.random() * 400);
+  }, 800);
 }
 
-// Queue message if bot is typing
-function queueMessage(message) {
-  if (isTyping) {
-    messageQueue.push(message);
-    showQueuedNotification();
-  } else {
-    document.getElementById("userInput").value = message;
-    sendMessage();
-  }
-}
 
-// Show notification when message is queued
-function showQueuedNotification() {
-  const chatBody = document.getElementById("chatBody");
-  const notification = document.createElement("div");
-  notification.classList.add("system-message");
-  notification.innerHTML = `
-    <div class="system-content">
-      <i class="fas fa-clock"></i> Message queued - I'll respond shortly
-    </div>
-  `;
-  chatBody.appendChild(notification);
-  setTimeout(() => notification.remove(), 2000);
-}
 
-// Allow Enter key to send message
+
+// Enter key support
 document.addEventListener("DOMContentLoaded", function() {
   const input = document.getElementById("userInput");
   if (input) {
     input.addEventListener("keypress", function(e) {
-      if (e.key === "Enter" && !e.shiftKey) {
+      if (e.key === "Enter") {
         e.preventDefault();
         sendMessage();
       }
     });
   }
 });
+
+function queueMessage(message) {
+  if (isTyping) {
+    messageQueue.push(message);
+  } else {
+    document.getElementById("userInput").value = message;
+    sendMessage();
+  }
+}
+
+// Add suggested questions
+function addSuggestedQuestions() {
+  const chatBody = document.getElementById("chatBody");
+  if (!chatBody) return;
+  if (document.querySelector('.suggested-questions')) return;
+  
+  const suggestions = document.createElement("div");
+  suggestions.classList.add("suggested-questions");
+  suggestions.innerHTML = `
+    <div class="suggestions-title">💡 Suggested Questions:</div>
+    <div class="suggestions-list">
+      <button class="suggestion-btn" onclick="queueMessage('What solutions do you offer?')">🔧 What solutions do you offer?</button>
+      <button class="suggestion-btn" onclick="queueMessage('How much does it cost?')">💰 How much does it cost?</button>
+      <button class="suggestion-btn" onclick="queueMessage('Can I see a demo?')">🎥 Can I see a demo?</button>
+      <button class="suggestion-btn" onclick="queueMessage('How can I contact you?')">📞 How can I contact you?</button>
+    </div>
+  `;
+  chatBody.appendChild(suggestions);
+}
+
+// Add suggestions after load
+setTimeout(() => {
+  const chatBody = document.getElementById("chatBody");
+  if (chatBody && chatBody.children.length <= 2) {
+    addSuggestedQuestions();
+  }
+}, 500);
+
+// Make functions global
+window.sendMessage = sendMessage;
+window.queueMessage = queueMessage;
+window.toggleChatbot = toggleChatbot;
+
+console.log('✅ Chatbot ready!');
 
 // ========== SCROLL REVEAL ANIMATIONS ==========
 const observerOptions = {
@@ -451,3 +429,341 @@ setTimeout(() => {
     addSuggestedQuestions();
   }
 }, 1000);
+
+// ========== BACKEND API INTEGRATION ==========
+
+// ========== CONTACT FORM - REQUIRE ALL FIELDS ==========
+
+const contactForm = document.getElementById('contactForm');
+if (contactForm) {
+    contactForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        // Get all form values
+        const fullName = document.getElementById('fullName')?.value.trim() || '';
+        const email = document.getElementById('email')?.value.trim() || '';
+        const phone = document.getElementById('phone')?.value.trim() || '';
+        const company = document.getElementById('company')?.value.trim() || '';
+        const service = document.getElementById('service')?.value || '';
+        const message = document.getElementById('message')?.value.trim() || '';
+        
+        // Clear previous errors
+        clearAllErrors();
+        
+        // Validation array - Track all errors
+        let errors = [];
+        
+        // 1. Validate Full Name (REQUIRED)
+        if (fullName === '') {
+            errors.push({ field: 'fullName', message: 'Full name is required' });
+        } else if (fullName.length < 2) {
+            errors.push({ field: 'fullName', message: 'Name must be at least 2 characters' });
+        } else if (fullName.length > 50) {
+            errors.push({ field: 'fullName', message: 'Name must be less than 50 characters' });
+        }
+        
+        // 2. Validate Email (REQUIRED)
+        if (email === '') {
+            errors.push({ field: 'email', message: 'Email address is required' });
+        } else if (!isValidEmail(email)) {
+            errors.push({ field: 'email', message: 'Please enter a valid email address (e.g., name@example.com)' });
+        }
+        
+        // 3. Validate Phone (REQUIRED)
+        if (phone === '') {
+            errors.push({ field: 'phone', message: 'Phone number is required' });
+        } else if (!isValidPhone(phone)) {
+            errors.push({ field: 'phone', message: 'Please enter a valid phone number (e.g., +1 555 123 4567)' });
+        }
+        
+        // 4. Validate Company (REQUIRED)
+        if (company === '') {
+            errors.push({ field: 'company', message: 'Company name is required' });
+        } else if (company.length < 2) {
+            errors.push({ field: 'company', message: 'Company name must be at least 2 characters' });
+        }
+        
+        // 5. Validate Service Selection (REQUIRED)
+        if (service === '' || service === 'Select Service Interest') {
+            errors.push({ field: 'service', message: 'Please select a service interest' });
+        }
+        
+        // 6. Validate Message (REQUIRED)
+        if (message === '') {
+            errors.push({ field: 'message', message: 'Message is required' });
+        } else if (message.length < 10) {
+            errors.push({ field: 'message', message: 'Message must be at least 10 characters' });
+        } else if (message.length > 1000) {
+            errors.push({ field: 'message', message: 'Message must be less than 1000 characters' });
+        }
+        
+        // If there are errors, show them and STOP submission
+        if (errors.length > 0) {
+            showAllErrors(errors);
+            // Scroll to first error
+            const firstErrorField = document.getElementById(errors[0].field);
+            if (firstErrorField) {
+                firstErrorField.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+            return; // IMPORTANT: Stop form submission here
+        }
+        
+        // If no errors, submit the form
+        try {
+            // Show loading state
+            const submitBtn = document.querySelector('#contactForm .submit-btn');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            submitBtn.disabled = true;
+            
+            const formData = {
+                full_name: fullName,
+                email: email,
+                phone: phone,
+                company: company,
+                service: service,
+                message: message
+            };
+            
+            const response = await fetch('backend/api/contact.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            });
+            
+            const result = await response.json();
+            
+            // Reset button
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+            
+            if (result.success) {
+                showFormMessage(result.message, 'success');
+                contactForm.reset(); // Clear all fields
+                // Clear any remaining errors
+                clearAllErrors();
+            } else {
+                showFormMessage(result.message, 'error');
+            }
+        } catch (error) {
+            showFormMessage('Network error. Please check your connection and try again.', 'error');
+            // Reset button
+            const submitBtn = document.querySelector('#contactForm .submit-btn');
+            if (submitBtn) {
+                submitBtn.innerHTML = 'Send Message <i class="fas fa-paper-plane"></i>';
+                submitBtn.disabled = false;
+            }
+        }
+    });
+}
+
+// Helper function to validate email
+function isValidEmail(email) {
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return emailRegex.test(email);
+}
+
+// Helper function to validate phone
+function isValidPhone(phone) {
+    // Allows: +1 555 123 4567, 555-123-4567, 5551234567, (555) 123-4567
+    const phoneRegex = /^[\d\s\+\(\)\-]{10,20}$/;
+    return phoneRegex.test(phone);
+}
+
+// Function to show all errors
+function showAllErrors(errors) {
+    errors.forEach(error => {
+        const field = document.getElementById(error.field);
+        if (field) {
+            // Highlight field in red
+            field.style.borderColor = '#e74c3c';
+            field.style.borderWidth = '2px';
+            field.style.borderStyle = 'solid';
+            
+            // Remove existing error message for this field
+            const existingError = field.parentElement.querySelector('.field-error');
+            if (existingError) {
+                existingError.remove();
+            }
+            
+            // Create new error message
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'field-error';
+            errorDiv.textContent = error.message;
+            errorDiv.style.color = '#e74c3c';
+            errorDiv.style.fontSize = '0.7rem';
+            errorDiv.style.marginTop = '0.25rem';
+            errorDiv.style.paddingLeft = '0.5rem';
+            field.parentElement.appendChild(errorDiv);
+        }
+    });
+}
+
+// Function to clear all errors
+function clearAllErrors() {
+    // Clear border colors from all inputs
+    const inputs = document.querySelectorAll('#contactForm input, #contactForm select, #contactForm textarea');
+    inputs.forEach(input => {
+        input.style.borderColor = '';
+        input.style.borderWidth = '';
+        input.style.borderStyle = '';
+    });
+    
+    // Clear all error message divs
+    const errorMessages = document.querySelectorAll('.field-error');
+    errorMessages.forEach(msg => msg.remove());
+}
+
+// Real-time validation - clear error when user starts typing
+document.querySelectorAll('#contactForm input, #contactForm select, #contactForm textarea').forEach(field => {
+    field.addEventListener('input', function() {
+        // Clear error for this specific field
+        this.style.borderColor = '';
+        const errorDiv = this.parentElement.querySelector('.field-error');
+        if (errorDiv) {
+            errorDiv.remove();
+        }
+    });
+    
+    // Also clear on focus
+    field.addEventListener('focus', function() {
+        this.style.borderColor = '';
+        const errorDiv = this.parentElement.querySelector('.field-error');
+        if (errorDiv) {
+            errorDiv.remove();
+        }
+    });
+});
+
+// Function to show form-level message
+function showFormMessage(message, type) {
+    const successMsg = document.getElementById('formSuccess');
+    if (successMsg) {
+        successMsg.textContent = message;
+        successMsg.className = 'form-success ' + type;
+        successMsg.style.display = 'block';
+        
+        // Scroll to message
+        successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        
+        // Hide after 5 seconds
+        setTimeout(() => {
+            successMsg.style.display = 'none';
+        }, 5000);
+    }
+}
+
+
+
+// ========== NEWSLETTER SUBSCRIPTION ==========
+async function subscribeNewsletter() {
+    const emailInput = document.getElementById('newsletterEmail');
+    const email = emailInput?.value.trim();
+    
+    // Validate email
+    if (!email) {
+        showAlert('error', 'Email Required', 'Please enter your email address.');
+        return;
+    }
+    
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        showAlert('error', 'Invalid Email', 'Please enter a valid email address.');
+        return;
+    }
+    
+    // Show loading state
+    const subscribeBtn = document.querySelector('#newsletterSection .btn-primary, .newsletter-form .btn-primary');
+    const originalText = subscribeBtn?.innerHTML;
+    if (subscribeBtn) {
+        subscribeBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Subscribing...';
+        subscribeBtn.disabled = true;
+    }
+    
+    try {
+        const response = await fetch('backend/api/newsletter.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: email })
+        });
+        
+        const result = await response.json();
+        
+        // Reset button
+        if (subscribeBtn) {
+            subscribeBtn.innerHTML = originalText;
+            subscribeBtn.disabled = false;
+        }
+        
+        if (result.success) {
+            showAlert('success', 'Subscribed!', result.message);
+            emailInput.value = ''; // Clear input field
+        } else {
+            showAlert('error', 'Subscription Failed', result.message);
+        }
+    } catch (error) {
+        // Reset button
+        if (subscribeBtn) {
+            subscribeBtn.innerHTML = originalText;
+            subscribeBtn.disabled = false;
+        }
+        showAlert('error', 'Connection Error', 'Unable to connect. Please try again later.');
+    }
+}
+
+// Alert function (if you don't have it already)
+function showAlert(type, title, message) {
+    // Remove existing alert
+    const existingAlert = document.querySelector('.custom-alert');
+    if (existingAlert) {
+        existingAlert.remove();
+    }
+    
+    // Create alert element
+    const alertDiv = document.createElement('div');
+    alertDiv.className = `custom-alert custom-alert-${type}`;
+    
+    let icon = type === 'success' ? '<i class="fas fa-check-circle"></i>' : '<i class="fas fa-exclamation-circle"></i>';
+    
+    alertDiv.innerHTML = `
+        <div class="alert-content">
+            <div class="alert-icon">${icon}</div>
+            <div class="alert-text">
+                <h4>${title}</h4>
+                <p>${message}</p>
+            </div>
+            <button class="alert-close" onclick="this.parentElement.parentElement.remove()">&times;</button>
+        </div>
+    `;
+    
+    document.body.appendChild(alertDiv);
+    
+    // Auto remove after 5 seconds
+    setTimeout(() => {
+        if (alertDiv) {
+            alertDiv.style.animation = 'fadeOut 0.3s ease';
+            setTimeout(() => alertDiv.remove(), 300);
+        }
+    }, 5000);
+}
+
+// ========== DEBUG: CHECK IF SENDMESSAGE EXISTS ==========
+console.log('Script loaded successfully');
+console.log('sendMessage function exists:', typeof sendMessage === 'function');
+
+// Test function to verify button click
+function testChat() {
+    console.log('Test chat function called');
+    const input = document.getElementById('userInput');
+    if (input) {
+        console.log('Input found, value:', input.value);
+    } else {
+        console.log('Input not found!');
+    }
+}
+
+// Make sure sendMessage is globally available
+window.sendMessage = sendMessage;
+window.queueMessage = queueMessage;
+
+console.log('Chatbot functions are ready!');

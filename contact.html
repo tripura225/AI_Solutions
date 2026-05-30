@@ -19,7 +19,7 @@
   <!-- HEADER - Modern Glassmorphism Navbar -->
   <header>
     <div class="container navbar">
-      <div class="logo">
+      <div class="logo" onclick="location.href='index.html'" style="cursor: pointer;">
         <span class="logo-icon">✦</span>
         AI
       </div>
@@ -99,39 +99,39 @@
           </div>
         </div>
 
-        <!-- Contact Form -->
+        <!-- Contact Form - ALL FIELDS REQUIRED -->
         <div class="contact-form">
           <div class="form-header">
             <h2>Send Us a Message</h2>
-            <p>We'll get back to you within 24 hours</p>
+            <p>All fields are required. We'll get back to you within 24 hours</p>
           </div>
           
           <form id="contactForm">
             <div class="form-row">
               <div class="form-group">
                 <i class="fas fa-user"></i>
-                <input type="text" id="fullName" placeholder="Full Name" required>
+                <input type="text" id="fullName" name="fullName" placeholder="Full Name" required>
               </div>
               <div class="form-group">
                 <i class="fas fa-envelope"></i>
-                <input type="email" id="email" placeholder="Email Address" required>
+                <input type="email" id="email" name="email" placeholder="Email Address" required>
               </div>
             </div>
 
             <div class="form-row">
               <div class="form-group">
                 <i class="fas fa-phone"></i>
-                <input type="tel" id="phone" placeholder="Phone Number">
+                <input type="tel" id="phone" name="phone" placeholder="Phone Number" required>
               </div>
               <div class="form-group">
                 <i class="fas fa-building"></i>
-                <input type="text" id="company" placeholder="Company Name">
+                <input type="text" id="company" name="company" placeholder="Company Name" required>
               </div>
             </div>
 
             <div class="form-group full-width">
               <i class="fas fa-tag"></i>
-              <select id="service">
+              <select id="service" name="service" required>
                 <option value="">Select Service Interest</option>
                 <option value="ai-automation">AI Automation</option>
                 <option value="smart-analytics">Smart Analytics</option>
@@ -142,7 +142,7 @@
 
             <div class="form-group full-width">
               <i class="fas fa-comment"></i>
-              <textarea id="message" rows="5" placeholder="Tell us about your project..."></textarea>
+              <textarea id="message" name="message" rows="5" placeholder="Tell us about your project..." required></textarea>
             </div>
 
             <button type="submit" class="btn btn-primary submit-btn">
@@ -155,7 +155,7 @@
       </div>
     </section>
 
-    <!-- MAP SECTION (Optional) -->
+    <!-- MAP SECTION -->
     <section class="container map-section">
       <div class="map-card">
         <h3><i class="fas fa-map-marked-alt"></i> Find Us Here</h3>
@@ -219,7 +219,7 @@
   <footer>
     <div class="container footer-grid">
       <div>
-        <div class="footer-logo">
+        <div class="footer-logo" onclick="location.href='index.html'" style="cursor: pointer;">
           <span class="logo-icon">✦</span>
           AI
         </div>
@@ -247,10 +247,10 @@
       <div>
         <h3>Solutions</h3>
         <ul>
-          <li><a href="#">AI Automation</a></li>
-          <li><a href="#">Chatbots</a></li>
-          <li><a href="#">Smart Analytics</a></li>
-          <li><a href="#">Cloud AI</a></li>
+          <li><a href="solutions.html">AI Automation</a></li>
+          <li><a href="solutions.html">Chatbots</a></li>
+          <li><a href="solutions.html">Smart Analytics</a></li>
+          <li><a href="solutions.html">Cloud AI</a></li>
         </ul>
       </div>
 
@@ -267,8 +267,8 @@
         <h3>Newsletter</h3>
         <p>Subscribe for latest AI updates.</p>
         <div class="newsletter-form">
-          <input type="email" placeholder="Enter your email">
-          <button class="btn btn-primary">
+          <input type="email" id="newsletterEmail" placeholder="Enter your email">
+          <button class="btn btn-primary" onclick="subscribeNewsletter()">
             Subscribe <i class="fas fa-paper-plane"></i>
           </button>
         </div>
@@ -280,54 +280,152 @@
     </div>
   </footer>
 
-  <script src="script.js"></script>
-  <script>
-    // Form submission handler
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      // Get form values
-      const name = document.getElementById('fullName').value;
-      const email = document.getElementById('email').value;
-      const phone = document.getElementById('phone').value;
-      const company = document.getElementById('company').value;
-      const service = document.getElementById('service').value;
-      const message = document.getElementById('message').value;
-      
-      // Simple validation
-      if (!name || !email) {
-        showFormMessage('Please fill in all required fields', 'error');
-        return;
-      }
-      
-      // Email validation
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(email)) {
-        showFormMessage('Please enter a valid email address', 'error');
-        return;
-      }
-      
-      // Show success message
-      showFormMessage('Thank you! We will get back to you within 24 hours.', 'success');
-      
-      // Reset form
-      this.reset();
-      
-      // Scroll to success message
-      document.getElementById('formSuccess').scrollIntoView({ behavior: 'smooth', block: 'center' });
+<script src="script.js"></script>
+<script>
+    // Form submission handler with popup alerts
+    document.getElementById('contactForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        // Get form values
+        const name = document.getElementById('fullName').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const company = document.getElementById('company').value.trim();
+        const service = document.getElementById('service').value;
+        const message = document.getElementById('message').value.trim();
+        
+        // Check ALL fields
+        if (!name || !email || !phone || !company || !service || !message) {
+            showCustomAlert('error', 'Missing Fields', 'Please fill in ALL fields before submitting.');
+            return;
+        }
+        
+        // Email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            showCustomAlert('error', 'Invalid Email', 'Please enter a valid email address.');
+            return;
+        }
+        
+        // Phone validation
+        if (phone.length < 10) {
+            showCustomAlert('error', 'Invalid Phone', 'Please enter a valid phone number (minimum 10 digits).');
+            return;
+        }
+        
+        // Show loading state
+        const submitBtn = document.querySelector('#contactForm .submit-btn');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+        submitBtn.disabled = true;
+        
+        // Prepare data for backend
+        const formData = {
+            full_name: name,
+            email: email,
+            phone: phone,
+            company: company,
+            service: service,
+            message: message
+        };
+        
+        try {
+            // Send to backend
+            const response = await fetch('backend/api/contact.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            });
+            
+            const result = await response.json();
+            
+            // Reset button
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+            
+            if (result.success) {
+                // Show success popup
+                showCustomAlert('success', 'Message Sent!', result.message);
+                document.getElementById('contactForm').reset();
+                
+                // Also show in the form
+                const successMsg = document.getElementById('formSuccess');
+                successMsg.textContent = result.message;
+                successMsg.className = 'form-success success';
+                successMsg.style.display = 'block';
+                setTimeout(() => {
+                    successMsg.style.display = 'none';
+                }, 5000);
+            } else {
+                showCustomAlert('error', 'Submission Failed', result.message);
+            }
+        } catch (error) {
+            // Reset button
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+            showCustomAlert('error', 'Connection Error', 'Unable to connect to server. Please try again later.');
+        }
     });
     
-    function showFormMessage(message, type) {
-      const successMsg = document.getElementById('formSuccess');
-      successMsg.textContent = message;
-      successMsg.className = 'form-success ' + type;
-      successMsg.style.display = 'block';
-      
-      // Hide after 5 seconds
-      setTimeout(() => {
-        successMsg.style.display = 'none';
-      }, 5000);
+    // Custom Alert/Popup Function
+    function showCustomAlert(type, title, message) {
+        // Remove existing alert if any
+        const existingAlert = document.querySelector('.custom-alert');
+        if (existingAlert) {
+            existingAlert.remove();
+        }
+        
+        // Create alert element
+        const alertDiv = document.createElement('div');
+        alertDiv.className = `custom-alert custom-alert-${type}`;
+        
+        // Set icon based on type
+        let icon = '';
+        if (type === 'success') {
+            icon = '<i class="fas fa-check-circle"></i>';
+        } else if (type === 'error') {
+            icon = '<i class="fas fa-exclamation-circle"></i>';
+        } else {
+            icon = '<i class="fas fa-info-circle"></i>';
+        }
+        
+        alertDiv.innerHTML = `
+            <div class="alert-content">
+                <div class="alert-icon">${icon}</div>
+                <div class="alert-text">
+                    <h4>${title}</h4>
+                    <p>${message}</p>
+                </div>
+                <button class="alert-close" onclick="this.parentElement.parentElement.remove()">&times;</button>
+            </div>
+        `;
+        
+        // Add to body
+        document.body.appendChild(alertDiv);
+        
+        // Auto remove after 5 seconds
+        setTimeout(() => {
+            if (alertDiv) {
+                alertDiv.style.animation = 'fadeOut 0.3s ease';
+                setTimeout(() => {
+                    if (alertDiv) alertDiv.remove();
+                }, 300);
+            }
+        }, 5000);
     }
-  </script>
+    
+    // Original showFormMessage function (kept for compatibility)
+    function showFormMessage(message, type) {
+        const successMsg = document.getElementById('formSuccess');
+        if (successMsg) {
+            successMsg.textContent = message;
+            successMsg.className = 'form-success ' + type;
+            successMsg.style.display = 'block';
+            setTimeout(() => {
+                successMsg.style.display = 'none';
+            }, 5000);
+        }
+    }
+</script>
 </body>
 </html>
