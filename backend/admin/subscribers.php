@@ -62,10 +62,14 @@ $subscribers = executeQuery($conn, "SELECT * FROM newsletter_subscribers ORDER B
     </div>
     
     <div class="main-content">
-        <div class="header">
-            <h1>Newsletter Subscribers</h1>
+       <div class="header">
+        <h1>Newsletter Subscribers</h1>
+        <div>
+            <a href="export.php?type=subscribers&format=csv" class="btn-export">📊 Export CSV</a>
+            <a href="export.php?type=subscribers&format=xls" class="btn-export">📊 Export Excel</a>
             <a href="logout.php" class="logout-btn">Logout</a>
         </div>
+       </div>
         
         <table>
             <thead><tr><th>ID</th><th>Email</th><th>Subscribed Date</th><th>Actions</th></tr></thead>

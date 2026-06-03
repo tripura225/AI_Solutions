@@ -47,9 +47,14 @@ $chats = executeQuery($conn, "SELECT * FROM chat_logs ORDER BY created_at DESC")
         table { width: 100%; background: white; border-radius: 0.5rem; overflow: hidden; }
         th, td { padding: 1rem; text-align: left; border-bottom: 1px solid #eee; }
         th { background: #0F4C5C; color: white; }
-        .user-msg { color: #0F4C5C; font-weight: 500; }
-        .bot-msg { color: #E76F51; }
-        .btn-delete { background: #e74c3c; color: white; padding: 0.25rem 0.5rem; border-radius: 0.25rem; text-decoration: none; font-size: 0.75rem; }
+        .btn-view { 
+            background: #2A9D8F; color: white; padding: 0.3rem 0.8rem; 
+            border-radius: 0.25rem; text-decoration: none; font-size: 0.75rem;
+        }
+        .btn-delete { 
+            background: #e74c3c; color: white; padding: 0.3rem 0.8rem; 
+            border-radius: 0.25rem; text-decoration: none; font-size: 0.75rem;
+        }
         .logout-btn { background: #E76F51; color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; text-decoration: none; }
     </style>
 </head>
@@ -65,21 +70,29 @@ $chats = executeQuery($conn, "SELECT * FROM chat_logs ORDER BY created_at DESC")
     
     <div class="main-content">
         <div class="header">
-            <h1>Chat Logs</h1>
-            <a href="logout.php" class="logout-btn">Logout</a>
-        </div>
+        <h1>Chat Logs</h1>
+    <div>
+        <a href="export.php?type=chats&format=csv" class="btn-export">📊 Export CSV</a>
+        <a href="export.php?type=chats&format=xls" class="btn-export">📊 Export Excel</a>
+        <a href="logout.php" class="logout-btn">Logout</a>
+    </div>
+    </div>
         
         <table>
-            <thead><tr><th>ID</th><th>Session ID</th><th>User Message</th><th>Bot Response</th><th>Date</th><th>Actions</th></tr></thead>
+            <thead>
+                <tr><th>ID</th><th>Session ID</th><th>User Message</th><th>Date</th><th>Actions</th></tr>
+            </thead>
             <tbody>
                 <?php while ($chat = mysqli_fetch_assoc($chats)): ?>
                 <tr>
                     <td><?php echo $chat['id']; ?></td>
                     <td><?php echo substr($chat['session_id'], 0, 20); ?>...</td>
-                    <td class="user-msg"><?php echo htmlspecialchars(substr($chat['user_message'], 0, 50)); ?>...</td>
-                    <td class="bot-msg"><?php echo htmlspecialchars(substr($chat['bot_response'], 0, 50)); ?>...</td>
+                    <td><?php echo htmlspecialchars(substr($chat['user_message'], 0, 60)); ?>...</td>
                     <td><?php echo date('M d, H:i', strtotime($chat['created_at'])); ?></td>
-                    <td><a href="?delete=<?php echo $chat['id']; ?>" class="btn-delete" onclick="return confirm('Delete?')">Delete</a></td>
+                    <td>
+                        <a href="chat_detail.php?id=<?php echo $chat['id']; ?>" class="btn-view">View Details</a>
+                        <a href="?delete=<?php echo $chat['id']; ?>" class="btn-delete" onclick="return confirm('Delete?')">Delete</a>
+                    </td>
                 </tr>
                 <?php endwhile; ?>
             </tbody>

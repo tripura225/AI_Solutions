@@ -7,7 +7,7 @@ $db_name = 'ai_solutions';
 $conn = mysqli_connect($db_host, $db_user, $db_password, $db_name);
 
 if (!$conn) {
-    die(json_encode(['success' => false, 'message' => 'Database connection failed']));
+    die("Connection failed: " . mysqli_connect_error());
 }
 
 mysqli_set_charset($conn, "utf8mb4");
@@ -30,15 +30,5 @@ function executeQuery($conn, $sql, $params = []) {
 function sanitize($data) {
     global $conn;
     return mysqli_real_escape_string($conn, htmlspecialchars(strip_tags(trim($data))));
-}
-
-header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
-header('Access-Control-Allow-Headers: Content-Type');
-
-if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-    http_response_code(200);
-    exit();
 }
 ?>

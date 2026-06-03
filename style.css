@@ -2274,3 +2274,22 @@ nav ul li a.active::after {
     100% { transform: rotate(360deg); }
 }
 
+
+/* Back button hover effect */
+.back-button:hover {
+    background: rgba(255,255,255,0.3) !important;
+    transform: translateX(-5px);
+}
+
+
+
+
+.industry-card {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.industry-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}

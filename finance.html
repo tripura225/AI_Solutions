@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AI Solutions for Finance - Enhance fraud detection, risk management, and customer service with AI-powered financial solutions.">
+  <title>AI in Finance | AI Solutions</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <div class="container navbar">
+      <div class="logo" onclick="location.href='index.html'" style="cursor: pointer;">
+        <span class="logo-icon">✦</span>
+        AI
+      </div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="solutions.html" class="active">Solutions</a></li>
+          <li><a href="insights.html">Insights</a></li>
+          <li><a href="testimonials.html">Testimonials</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </nav>
+      <button class="mobile-menu-btn" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="solution-hero" style="background: linear-gradient(135deg, #0F4C5C 0%, #2A9D8F 100%); color: white; padding: 6rem 0 4rem;">
+      <div class="container">
+        <div style="margin-bottom: 2rem;">
+          <a href="javascript:history.back()" style="display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(255,255,255,0.2); color: white; padding: 0.5rem 1rem; border-radius: 2rem; text-decoration: none; font-size: 0.9rem;">
+            <i class="fas fa-arrow-left"></i> Go Back
+          </a>
+        </div>
+        <div class="hero-badge" style="background: rgba(255,255,255,0.2); color: white;">Industry Focus</div>
+        <h1 style="font-size: 3rem; margin-bottom: 1rem; color: white;">AI in Finance</h1>
+        <p style="font-size: 1.2rem; max-width: 700px;">Enhance fraud detection, optimize risk management, and deliver personalized financial services with AI-powered solutions.</p>
+      </div>
+    </section>
+
+    <section class="container" style="padding: 4rem 0;">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;">
+        <div>
+          <span class="section-tag">Overview</span>
+          <h2 style="font-size: 2rem; margin-bottom: 1rem;">AI Revolutionizing Finance</h2>
+          <p>Artificial intelligence is transforming the financial sector by enabling real-time fraud detection, automated trading, and personalized banking experiences.</p>
+          <ul style="list-style: none; padding: 0; margin-top: 1rem;">
+            <li><i class="fas fa-check-circle" style="color: #2A9D8F;"></i> Detect fraudulent transactions in real-time</li>
+            <li><i class="fas fa-check-circle" style="color: #2A9D8F;"></i> Automate loan approval and credit scoring</li>
+            <li><i class="fas fa-check-circle" style="color: #2A9D8F;"></i> Personalized investment recommendations</li>
+          </ul>
+        </div>
+        <div><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&h=350&fit=crop" alt="Finance AI" style="width: 100%; border-radius: 1rem;"></div>
+      </div>
+    </section>
+
+    <section style="background: #f8fafc; padding: 4rem 0;">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Use Cases</span>
+          <h2>AI Applications in Finance</h2>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+          <div style="background: white; padding: 1.5rem; border-radius: 1rem;">
+            <i class="fas fa-shield-alt" style="font-size: 2rem; color: #0F4C5C;"></i>
+            <h3>Fraud Detection</h3>
+            <p>Real-time transaction monitoring and anomaly detection.</p>
+          </div>
+          <div style="background: white; padding: 1.5rem; border-radius: 1rem;">
+            <i class="fas fa-chart-line" style="font-size: 2rem; color: #0F4C5C;"></i>
+            <h3>Algorithmic Trading</h3>
+            <p>Automated trading strategies based on market analysis.</p>
+          </div>
+          <div style="background: white; padding: 1.5rem; border-radius: 1rem;">
+            <i class="fas fa-headset" style="font-size: 2rem; color: #0F4C5C;"></i>
+            <h3>Customer Service</h3>
+            <p>AI chatbots for 24/7 banking support.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="container cta">
+        <div class="cta-content">
+          <h2>Ready to Modernize Your Financial Services?</h2>
+          <button class="btn btn-primary btn-large" onclick="window.location.href='contact.html'">Get Started <i class="fas fa-arrow-right"></i></button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="chatbot-toggle" onclick="toggleChatbot()"><i class="fas fa-comment-dots"></i></div>
+  <div class="chatbot-container" id="chatbot">...</div>
+
+  <footer>... (same footer as other pages)</footer>
+  <script src="script.js"></script>
+</body>
+</html>

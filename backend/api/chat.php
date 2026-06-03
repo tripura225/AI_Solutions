@@ -53,8 +53,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     
     // SECURE: Using prepared statement to prevent SQL injection
-    $sql = "INSERT INTO chat_logs (session_id, user_message, bot_response) VALUES (?, ?, ?)";
-    $stmt = mysqli_prepare($conn, $sql);
+   // Add email field
+$user_email = isset($data['email']) ? trim($data['email']) : '';
+
+// Update SQL
+$sql = "INSERT INTO chat_logs (session_id, user_message, bot_response, user_email) VALUES (?, ?, ?, ?)";
+$stmt = mysqli_prepare($conn, $sql);
+mysqli_stmt_bind_param($stmt, "ssss", $session_id, $user_message, $bot_response, $user_email);
     
     if ($stmt) {
         mysqli_stmt_bind_param($stmt, "sss", $session_id, $user_message, $bot_response);

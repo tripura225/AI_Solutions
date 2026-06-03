@@ -70,12 +70,12 @@ document.querySelectorAll('[data-navigate]').forEach(element => {
 });
 
 // Handle "Get Started", "Explore Solutions", "Contact Us" buttons
-/* const exploreSolutionsBtn = document.querySelector('.btn-primary:contains("Explore Solutions")');
+const exploreSolutionsBtn = document.querySelector('.btn-primary:contains("Explore Solutions")');
 const contactUsBtn = document.querySelector('.btn-secondary:contains("Contact Us")');
 const getInTouchBtn = document.querySelector('.btn-primary:contains("Get In Touch")');
 const getStartedBtn = document.querySelector('.btn-primary:contains("Get Started")');
 const startJourneyBtn = document.querySelector('.btn-primary:contains("Start Your Journey")');
-const requestDemoBtn = document.querySelector('.btn-primary:contains("Request a Demo")');*/
+const requestDemoBtn = document.querySelector('.btn-primary:contains("Request a Demo")');
 
 // Helper function to check button text
 function findButtonByText(text) {
@@ -171,8 +171,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
-// ========== CHATBOT FUNCTIONALITY ==========
-
+// ========== WORKING CHATBOT ==========
 let isTyping = false;
 let messageQueue = [];
 
@@ -265,74 +264,56 @@ function getBotResponse(message) {
 }
 
 // MAIN SEND MESSAGE FUNCTION
-// Add this variable at the top
-let userEmail = null;
-
-// Modify sendMessage function
-async function sendMessage() {
-    const input = document.getElementById("userInput");
-    const message = input.value.trim();
-    
-    if (message === "" || isTyping) return;
-    
-    // If email not collected, ask for it
-    if (!userEmail && !message.includes("@")) {
-        addMessage("Please provide your email address so we can respond to you if needed:", false);
-        userEmail = "waiting";
-        input.value = "";
-        return;
-    }
-    
-    if (userEmail === "waiting" && message.includes("@")) {
-        userEmail = message;
-        addMessage("Thank you! Your email has been saved. Now, how can I help you?", false);
-        input.value = "";
-        return;
-    }
-    
-    // Regular chat flow continues...
-    addMessage(message, true);
+function sendMessage() {
+  console.log("sendMessage called!"); // Debug
+  
+  const input = document.getElementById("userInput");
+  if (!input) {
+    console.log("Input not found!");
+    return;
+  }
+  
+  const message = input.value.trim();
+  console.log("Message:", message);
+  
+  if (message === "") {
+    console.log("Empty message");
+    return;
+  }
+  
+  if (isTyping) {
+    console.log("Bot typing, queuing");
+    messageQueue.push(message);
     input.value = "";
+    return;
+  }
+  
+  // Add user message
+  addMessage(message, true);
+  input.value = "";
+  
+  // Show typing indicator
+  isTyping = true;
+  const typingIndicator = addMessage("", false, true);
+  
+  // Get bot response after delay
+  setTimeout(() => {
+    if (typingIndicator && typingIndicator.remove) {
+      typingIndicator.remove();
+    }
     
-    isTyping = true;
-    const typingIndicator = addMessage("", false, true);
+    const response = getBotResponse(message);
+    addMessage(response, false);
+    isTyping = false;
     
-    setTimeout(async () => {
-        if (typingIndicator && typingIndicator.remove) typingIndicator.remove();
-        const response = getBotResponse(message);
-        addMessage(response, false);
-        isTyping = false;
-        
-        // Save to database with email
-        try {
-            const chatData = {
-                message: message,
-                response: response.replace(/<[^>]*>/g, ''),
-                email: userEmail && userEmail !== "waiting" ? userEmail : null
-            };
-            
-            const fetchResponse = await fetch('backend/api/chat.php', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(chatData)
-            });
-            
-            const result = await fetchResponse.json();
-            if (result.success) {
-                console.log('✅ Chat saved to database');
-            }
-        } catch (error) {
-            console.log('❌ Error saving chat:', error);
-        }
-        
-        if (messageQueue.length > 0) {
-            const nextMsg = messageQueue.shift();
-            document.getElementById("userInput").value = nextMsg;
-            sendMessage();
-        }
-    }, 800);
+    // Process queued messages
+    if (messageQueue.length > 0) {
+      const nextMsg = messageQueue.shift();
+      document.getElementById("userInput").value = nextMsg;
+      sendMessage();
+    }
+  }, 800);
 }
-
 
 // Enter key support
 document.addEventListener("DOMContentLoaded", function() {
@@ -347,6 +328,14 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 });
 
+// Make sure functions are global
+window.sendMessage = sendMessage;
+window.toggleChatbot = toggleChatbot;
+
+console.log("✅ Chatbot loaded!");
+
+
+
 function queueMessage(message) {
   if (isTyping) {
     messageQueue.push(message);
@@ -356,7 +345,7 @@ function queueMessage(message) {
   }
 }
 
-// Add suggested questions (ONLY ONCE)
+// Add suggested questions
 function addSuggestedQuestions() {
   const chatBody = document.getElementById("chatBody");
   if (!chatBody) return;
@@ -391,7 +380,60 @@ window.toggleChatbot = toggleChatbot;
 
 console.log('✅ Chatbot ready!');
 
+// ========== SCROLL REVEAL ANIMATIONS ==========
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px 0px -50px 0px'
+};
 
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+      observer.unobserve(entry.target);
+    }
+  });
+}, observerOptions);
+
+// Observe all sections for fade-in
+document.querySelectorAll('.hero-text, .hero-image, .mission, .feature-card, .solution-card, .insight-card, .testimonial-card, .gallery-item, .info-card, .stat-card').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(30px)';
+  el.style.transition = 'all 0.6s ease';
+  observer.observe(el);
+});
+
+// ========== SUGGESTED QUESTIONS FOR CHATBOT ==========
+// Add suggested questions when chatbot is idle
+function addSuggestedQuestions() {
+  const chatBody = document.getElementById("chatBody");
+  // Check if suggestions already exist
+  if (document.querySelector('.suggested-questions')) return;
+  
+  const suggestions = document.createElement("div");
+  suggestions.classList.add("suggested-questions");
+  suggestions.innerHTML = `
+    <div class="suggestions-title">💡 Suggested Questions:</div>
+    <div class="suggestions-list">
+      <button class="suggestion-btn" onclick="queueMessage('What solutions do you offer?')">🔧 What solutions do you offer?</button>
+      <button class="suggestion-btn" onclick="queueMessage('How much does it cost?')">💰 How much does it cost?</button>
+      <button class="suggestion-btn" onclick="queueMessage('Can I see a demo?')">🎥 Can I see a demo?</button>
+      <button class="suggestion-btn" onclick="queueMessage('How can I contact you?')">📞 How can I contact you?</button>
+      <button class="suggestion-btn" onclick="queueMessage('Show me testimonials')">⭐ Show me testimonials</button>
+      <button class="suggestion-btn" onclick="queueMessage('View gallery')">🖼️ View gallery</button>
+    </div>
+  `;
+  chatBody.appendChild(suggestions);
+}
+
+// Check if chatbot is empty and add suggestions
+setTimeout(() => {
+  const chatBody = document.getElementById("chatBody");
+  if (chatBody && chatBody.children.length <= 1) {
+    addSuggestedQuestions();
+  }
+}, 1000);
 
 // ========== BACKEND API INTEGRATION ==========
 

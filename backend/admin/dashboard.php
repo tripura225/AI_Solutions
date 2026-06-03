@@ -55,6 +55,25 @@ $unread_count = mysqli_fetch_assoc(executeQuery($conn, "SELECT COUNT(*) as count
             border-radius: 0.5rem; text-decoration: none;
         }
         .logout-btn:hover { background: #D45A3A; }
+        .export-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+.export-link {
+    display: block;
+    padding: 0.5rem;
+    background: #f5f5f5;
+    color: #0F4C5C;
+    text-decoration: none;
+    border-radius: 0.25rem;
+    text-align: center;
+}
+.export-link:hover {
+    background: #E76F51;
+    color: white;
+}
     </style>
 </head>
 <body>
@@ -90,6 +109,14 @@ $unread_count = mysqli_fetch_assoc(executeQuery($conn, "SELECT COUNT(*) as count
                 <h3>Chat Sessions</h3>
                 <div class="stat-number"><?php echo $chats_count; ?></div>
             </div>
+            <div class="stat-card">
+    <h3>📊 Export Data</h3>
+    <div class="export-buttons">
+        <a href="export.php?type=contacts&format=csv" class="export-link">📄 Export Contacts (CSV)</a>
+        <a href="export.php?type=subscribers&format=csv" class="export-link">📧 Export Subscribers (CSV)</a>
+        <a href="export.php?type=chats&format=csv" class="export-link">💬 Export Chat Logs (CSV)</a>
+    </div>
+</div>
         </div>
     </div>
 </body>
