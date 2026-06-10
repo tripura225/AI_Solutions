@@ -68,11 +68,11 @@ $contacts = mysqli_query($conn, "SELECT * FROM contacts ORDER BY created_at DESC
         .btn-delete { background: #e74c3c; color: white; padding: 0.25rem 0.5rem; border-radius: 0.25rem; text-decoration: none; font-size: 0.75rem; }
         .logout-btn { background: #E76F51; color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; text-decoration: none; }
         .btn-export { 
-    background: #2A9D8F; color: white; padding: 0.5rem 1rem; 
-    border-radius: 0.5rem; text-decoration: none; margin-right: 0.5rem;
-    display: inline-block;
-}
-.btn-export:hover { background: #0F4C5C; }
+            background: #2A9D8F; color: white; padding: 0.5rem 1rem; 
+            border-radius: 0.5rem; text-decoration: none; margin-right: 0.5rem;
+            display: inline-block;
+        }
+        .btn-export:hover { background: #0F4C5C; }
     </style>
 </head>
 <body>
@@ -87,17 +87,27 @@ $contacts = mysqli_query($conn, "SELECT * FROM contacts ORDER BY created_at DESC
     
     <div class="main-content">
         <div class="header">
-    <h1>Contact Messages</h1>
-        <div>
-            <a href="export.php?type=contacts&format=csv" class="btn-export">📊 Export CSV</a>
-            <a href="export.php?type=contacts&format=xls" class="btn-export">📊 Export Excel</a>
-            <a href="logout.php" class="logout-btn">Logout</a>
+            <h1>Contact Messages</h1>
+            <div>
+                <a href="export.php?type=contacts&format=csv" class="btn-export">📊 Export CSV</a>
+                <a href="export.php?type=contacts&format=xls" class="btn-export">📊 Export Excel</a>
+                <a href="logout.php" class="logout-btn">Logout</a>
+            </div>
         </div>
-    </div>
         
         <table>
             <thead>
-                <tr><th>ID</th><th>Name</th><th>Email</th><th>Message</th><th>Status</th><th>Date</th><th>Actions</th></tr>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Job Title</th>
+                    <th>Company</th>
+                    <th>Message</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                </tr>
             </thead>
             <tbody>
                 <?php while ($contact = mysqli_fetch_assoc($contacts)): ?>
@@ -105,7 +115,9 @@ $contacts = mysqli_query($conn, "SELECT * FROM contacts ORDER BY created_at DESC
                     <td><?php echo $contact['id']; ?></td>
                     <td><?php echo htmlspecialchars($contact['full_name']); ?></td>
                     <td><?php echo htmlspecialchars($contact['email']); ?></td>
-                    <td style="max-width: 250px;"><?php echo substr(htmlspecialchars($contact['message']), 0, 50); ?>...</td>
+                    <td><?php echo htmlspecialchars($contact['job_title'] ?: 'N/A'); ?></td>
+                    <td><?php echo htmlspecialchars($contact['company'] ?: 'N/A'); ?></td>
+                    <td style="max-width: 200px;"><?php echo substr(htmlspecialchars($contact['message']), 0, 40); ?>...</td>
                     <td><span class="status-<?php echo $contact['status']; ?>"><?php echo $contact['status']; ?></span></td>
                     <td><?php echo date('M d, Y', strtotime($contact['created_at'])); ?></td>
                     <td>

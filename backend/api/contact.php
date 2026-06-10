@@ -46,6 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $full_name = isset($data['full_name']) ? trim($data['full_name']) : '';
     $email = isset($data['email']) ? trim($data['email']) : '';
     $phone = isset($data['phone']) ? trim($data['phone']) : '';
+    $job_title = isset($data['job_title']) ? trim($data['job_title']) : '';
     $company = isset($data['company']) ? trim($data['company']) : '';
     $service = isset($data['service']) ? trim($data['service']) : '';
     $message = isset($data['message']) ? trim($data['message']) : '';
@@ -54,6 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $full_name = mysqli_real_escape_string($conn, $full_name);
     $email = mysqli_real_escape_string($conn, $email);
     $phone = mysqli_real_escape_string($conn, $phone);
+    $job_title = mysqli_real_escape_string($conn, $job_title);
     $company = mysqli_real_escape_string($conn, $company);
     $service = mysqli_real_escape_string($conn, $service);
     $message = mysqli_real_escape_string($conn, $message);
@@ -75,6 +77,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors[] = 'Phone number is required';
     }
     
+    if (empty($job_title)) {
+        $errors[] = 'Job title is required';
+    }
+    
     if (empty($company)) {
         $errors[] = 'Company name is required';
     }
@@ -92,9 +98,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit();
     }
     
-    // Insert into database using direct query (simpler for debugging)
-    $sql = "INSERT INTO contacts (full_name, email, phone, company, service, message) 
-            VALUES ('$full_name', '$email', '$phone', '$company', '$service', '$message')";
+    // Insert into database with job_title
+    $sql = "INSERT INTO contacts (full_name, email, phone, job_title, company, service, message) 
+            VALUES ('$full_name', '$email', '$phone', '$job_title', '$company', '$service', '$message')";
     
     if (mysqli_query($conn, $sql)) {
         echo json_encode(['success' => true, 'message' => 'Thank you! We will get back to you within 24 hours.']);

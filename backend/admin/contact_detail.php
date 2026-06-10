@@ -162,6 +162,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['send_reply'])) {
             <div class="label">Phone:</div>
             <div class="info-value"><?php echo htmlspecialchars($contact['phone'] ?: 'Not provided'); ?></div>
             
+            <div class="label">Job Title:</div>
+            <div class="info-value"><?php echo htmlspecialchars($contact['job_title'] ?: 'Not provided'); ?></div>
+            
             <div class="label">Company:</div>
             <div class="info-value"><?php echo htmlspecialchars($contact['company'] ?: 'Not provided'); ?></div>
             

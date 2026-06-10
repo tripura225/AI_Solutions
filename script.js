@@ -730,3 +730,26 @@ window.sendMessage = sendMessage;
 window.queueMessage = queueMessage;
 
 console.log('Chatbot functions are ready!');
+
+
+// ========== FOOTER CONTACT INTERACTIONS ==========
+
+// Open Google Maps
+function openMap() {
+  const address = encodeURIComponent("Sunderland, UK");
+  window.open(`https://www.google.com/maps/search/?api=1&query=${address}`, '_blank');
+}
+
+// Make a phone call
+function makeCall() {
+  const phoneNumber = "+15551234567";
+  if (confirm(`Call ${phoneNumber}?`)) {
+    window.location.href = `tel:${phoneNumber}`;
+  }
+}
+
+// Send email
+function sendEmail() {
+  const email = "info@ai-solution.com";
+  window.location.href = `mailto:${email}?subject=AI Solutions Inquiry&body=Hello, I would like to learn more about your AI solutions.`;
+}

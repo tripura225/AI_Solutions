@@ -35,30 +35,29 @@ if ($format == 'csv') {
 
 // Export based on type
 switch ($type) {
-    case 'contacts':
-        // Get all contacts
-        $result = mysqli_query($conn, "SELECT * FROM contacts ORDER BY created_at DESC");
-        
-        // Add headers
-        fputcsv($output, ['ID', 'Full Name', 'Email', 'Phone', 'Company', 'Service', 'Message', 'Status', 'Created At', 'Admin Reply', 'Replied At']);
-        
-        // Add data rows
-        while ($row = mysqli_fetch_assoc($result)) {
-            fputcsv($output, [
-                $row['id'],
-                $row['full_name'],
-                $row['email'],
-                $row['phone'],
-                $row['company'],
-                $row['service'],
-                strip_tags($row['message']),
-                $row['status'],
-                $row['created_at'],
-                strip_tags($row['admin_reply'] ?? ''),
-                $row['replied_at'] ?? ''
-            ]);
-        }
-        break;
+case 'contacts':
+    $result = mysqli_query($conn, "SELECT * FROM contacts ORDER BY created_at DESC");
+    
+    // Add Job Title to headers
+    fputcsv($output, ['ID', 'Full Name', 'Email', 'Phone', 'Job Title', 'Company', 'Service', 'Message', 'Status', 'Created At', 'Admin Reply', 'Replied At']);
+    
+    while ($row = mysqli_fetch_assoc($result)) {
+        fputcsv($output, [
+            $row['id'],
+            $row['full_name'],
+            $row['email'],
+            $row['phone'],
+            $row['job_title'] ?? '',
+            $row['company'],
+            $row['service'],
+            strip_tags($row['message']),
+            $row['status'],
+            $row['created_at'],
+            strip_tags($row['admin_reply'] ?? ''),
+            $row['replied_at'] ?? ''
+        ]);
+    }
+    break;
         
     case 'subscribers':
         // Get all subscribers

@@ -13,35 +13,132 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   
   <link rel="stylesheet" href="style.css">
+  <style>
+    .info-card {
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .info-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    }
+    .info-card .info-icon i {
+      transition: transform 0.3s ease;
+    }
+    .info-card:hover .info-icon i {
+      transform: scale(1.1);
+    }
+    
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-content {
+      background: white;
+      max-width: 500px;
+      width: 90%;
+      border-radius: 1rem;
+      overflow: hidden;
+      animation: modalFadeIn 0.3s ease;
+    }
+    @keyframes modalFadeIn {
+      from { transform: translateY(-50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    .modal-header {
+      background: linear-gradient(135deg, #0F4C5C 0%, #2A9D8F 100%);
+      color: white;
+      padding: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .modal-header h3 {
+      margin: 0;
+      color: white;
+    }
+    .modal-close {
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .modal-close:hover {
+      transform: scale(1.1);
+    }
+    .modal-body {
+      padding: 1.5rem;
+    }
+    .business-hours-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .business-hours-table td {
+      padding: 0.75rem;
+      border-bottom: 1px solid #eee;
+    }
+    .business-hours-table td:first-child {
+      font-weight: 600;
+      color: #0F4C5C;
+    }
+    .business-hours-table tr:last-child td {
+      border-bottom: none;
+    }
+    .closed {
+      color: #e74c3c;
+    }
+    .open {
+      color: #2A9D8F;
+    }
+    .map-container {
+      width: 100%;
+      height: 300px;
+      border-radius: 0.5rem;
+      overflow: hidden;
+    }
+    .map-container iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+  </style>
 </head>
 <body>
 
   <!-- HEADER - Modern Glassmorphism Navbar -->
-  <header>
-    <div class="container navbar">
-      <div class="logo" onclick="location.href='index.html'" style="cursor: pointer;">
-        <span class="logo-icon">✦</span>
-        AI
-      </div>
-
-      <nav>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="solutions.html">Solutions</a></li>
-          <li><a href="insights.html">Insights</a></li>
-          <li><a href="testimonials.html">Testimonials</a></li>
-          <li><a href="gallery.html">Gallery</a></li>
-          <li><a href="contact.html" class="active">Contact Us</a></li>
-        </ul>
-      </nav>
-
-      <button class="mobile-menu-btn" aria-label="Menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+<header>
+  <div class="container navbar">
+    <div class="logo">
+      <span class="logo-icon">✦</span>
+      <img src="images/AI_logo.jpg" alt="AI Logo">
     </div>
-  </header>
+
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="solutions.html">Solutions</a></li>
+        <li><a href="insights.html">Insights</a></li>
+        <li><a href="testimonials.html" class="active">Testimonials</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+    </nav>
+
+    <button class="mobile-menu-btn" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>
 
   <main>
     <!-- PAGE HEADER SECTION -->
@@ -64,42 +161,46 @@
     <!-- CONTACT SECTION -->
     <section class="container contact-section">
       <div class="contact-wrapper">
-        <!-- Contact Information Cards -->
+        <!-- Contact Information Cards - CLICKABLE -->
         <div class="contact-info">
-          <div class="info-card">
+          <div class="info-card" onclick="openMap()">
             <div class="info-icon">
               <i class="fas fa-map-marker-alt"></i>
             </div>
             <h3>Visit Us</h3>
             <p>123 AI Boulevard<br>Sunderland, SR1 1AA<br>United Kingdom</p>
+            <small style="color: #E76F51; display: block; margin-top: 0.5rem;">Click to view map →</small>
           </div>
 
-          <div class="info-card">
+          <div class="info-card" onclick="makeCall()">
             <div class="info-icon">
               <i class="fas fa-phone-alt"></i>
             </div>
             <h3>Call Us</h3>
             <p>+1 (555) 123-4567<br>+44 (0) 191 234 5678</p>
+            <small style="color: #E76F51; display: block; margin-top: 0.5rem;">Click to call →</small>
           </div>
 
-          <div class="info-card">
+          <div class="info-card" onclick="sendEmail()">
             <div class="info-icon">
               <i class="fas fa-envelope"></i>
             </div>
             <h3>Email Us</h3>
             <p>info@ai-solution.com<br>support@ai-solution.com</p>
+            <small style="color: #E76F51; display: block; margin-top: 0.5rem;">Click to email →</small>
           </div>
 
-          <div class="info-card">
+          <div class="info-card" onclick="showBusinessHours()">
             <div class="info-icon">
               <i class="fas fa-clock"></i>
             </div>
             <h3>Business Hours</h3>
             <p>Monday - Friday: 9am - 6pm<br>Saturday: 10am - 2pm</p>
+            <small style="color: #E76F51; display: block; margin-top: 0.5rem;">Click for details →</small>
           </div>
         </div>
 
-        <!-- Contact Form - ALL FIELDS REQUIRED -->
+        <!-- Contact Form with JOB TITLE field -->
         <div class="contact-form">
           <div class="form-header">
             <h2>Send Us a Message</h2>
@@ -124,20 +225,26 @@
                 <input type="tel" id="phone" name="phone" placeholder="Phone Number" required>
               </div>
               <div class="form-group">
-                <i class="fas fa-building"></i>
-                <input type="text" id="company" name="company" placeholder="Company Name" required>
+                <i class="fas fa-briefcase"></i>
+                <input type="text" id="jobTitle" name="jobTitle" placeholder="Job Title" required>
               </div>
             </div>
 
-            <div class="form-group full-width">
-              <i class="fas fa-tag"></i>
-              <select id="service" name="service" required>
-                <option value="">Select Service Interest</option>
-                <option value="ai-automation">AI Automation</option>
-                <option value="smart-analytics">Smart Analytics</option>
-                <option value="ai-chatbots">AI Chatbots</option>
-                <option value="cloud-ai">Cloud AI</option>
-              </select>
+            <div class="form-row">
+              <div class="form-group">
+                <i class="fas fa-building"></i>
+                <input type="text" id="company" name="company" placeholder="Company Name" required>
+              </div>
+              <div class="form-group">
+                <i class="fas fa-tag"></i>
+                <select id="service" name="service" required>
+                  <option value="">Select Service Interest</option>
+                  <option value="ai-automation">AI Automation</option>
+                  <option value="smart-analytics">Smart Analytics</option>
+                  <option value="ai-chatbots">AI Chatbots</option>
+                  <option value="cloud-ai">Cloud AI</option>
+                </select>
+              </div>
             </div>
 
             <div class="form-group full-width">
@@ -159,11 +266,17 @@
     <section class="container map-section">
       <div class="map-card">
         <h3><i class="fas fa-map-marked-alt"></i> Find Us Here</h3>
-        <div class="map-placeholder">
-          <i class="fas fa-map"></i>
-          <p>Interactive Map - Sunderland, UK</p>
-          <small>123 AI Boulevard, Sunderland SR1 1AA</small>
+        <div class="map-container" id="googleMap">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2318.123456789!2d-1.381!3d54.906!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487e7b8e3e5e5e5e%3A0x123456789abcdef!2sSunderland%2C%20UK!5e0!3m2!1sen!2s!4v1700000000000!5m2!1sen!2s" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
         </div>
+        <p style="margin-top: 1rem; text-align: center;">
+          <strong>123 AI Boulevard, Sunderland, SR1 1AA, United Kingdom</strong>
+        </p>
       </div>
     </section>
 
@@ -181,7 +294,32 @@
     </section>
   </main>
 
-  <!-- CHATBOT - Enhanced design -->
+  <!-- BUSINESS HOURS MODAL -->
+  <div id="hoursModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3><i class="fas fa-clock"></i> Business Hours</h3>
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+      </div>
+      <div class="modal-body">
+        <table class="business-hours-table">
+          <tr><td>Monday</td><td>9:00 AM - 6:00 PM</td><td class="open">Open</td></tr>
+          <tr><td>Tuesday</td><td>9:00 AM - 6:00 PM</td><td class="open">Open</td></tr>
+          <tr><td>Wednesday</td><td>9:00 AM - 6:00 PM</td><td class="open">Open</td></tr>
+          <tr><td>Thursday</td><td>9:00 AM - 6:00 PM</td><td class="open">Open</td></tr>
+          <tr><td>Friday</td><td>9:00 AM - 6:00 PM</td><td class="open">Open</td></tr>
+          <tr><td>Saturday</td><td>10:00 AM - 2:00 PM</td><td class="open">Open</td></tr>
+          <tr><td>Sunday</td><td>Closed</td><td class="closed">Closed</td></tr>
+        </table>
+        <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #eee;">
+          <p><strong>📍 Time Zone:</strong> GMT (UTC+0)</p>
+          <p><strong>📞 After Hours Support:</strong> Available 24/7 via email</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHATBOT -->
   <div class="chatbot-toggle" onclick="toggleChatbot()">
     <i class="fas fa-comment-dots"></i>
   </div>
@@ -195,27 +333,19 @@
       </div>
       <span onclick="toggleChatbot()" class="close-btn">✖</span>
     </div>
-
     <div class="chatbot-body" id="chatBody">
       <div class="bot-message">
-        <div class="bot-avatar">
-          <i class="fas fa-robot"></i>
-        </div>
-        <div class="message-content">
-          Hello! How can we help you today?
-        </div>
+        <div class="bot-avatar"><i class="fas fa-robot"></i></div>
+        <div class="message-content">Hello! How can we help you today?</div>
       </div>
     </div>
-
     <div class="chatbot-footer">
       <input type="text" id="userInput" placeholder="Type a message..." onkeypress="if(event.key === 'Enter') sendMessage()">
-      <button onclick="sendMessage()">
-        <i class="fas fa-paper-plane"></i>
-      </button>
+      <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
     </div>
   </div>
 
-  <!-- FOOTER - Modern multi-column -->
+  <!-- FOOTER -->
   <footer>
     <div class="container footer-grid">
       <div>
@@ -225,10 +355,10 @@
         </div>
         <p>AI-powered solutions for modern workplaces.</p>
         <div class="social-icons">
-          <a href="#"><i class="fab fa-facebook"></i></a>
-          <a href="#"><i class="fab fa-linkedin-in"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-youtube"></i></a>
+          <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+          <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+          <a href="https://youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
         </div>
       </div>
 
@@ -247,19 +377,19 @@
       <div>
         <h3>Solutions</h3>
         <ul>
-          <li><a href="solutions.html">AI Automation</a></li>
-          <li><a href="solutions.html">Chatbots</a></li>
-          <li><a href="solutions.html">Smart Analytics</a></li>
-          <li><a href="solutions.html">Cloud AI</a></li>
+          <li><a href="ai-automation.html">AI Automation</a></li>
+          <li><a href="ai-chatbots.html">Chatbots</a></li>
+          <li><a href="smart-analytics.html">Smart Analytics</a></li>
+          <li><a href="cloud-ai.html">Cloud AI</a></li>
         </ul>
       </div>
 
       <div>
         <h3>Contact Us</h3>
         <ul class="contact-info">
-          <li><i class="fas fa-map-marker-alt"></i> Sunderland</li>
-          <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
-          <li><i class="fas fa-envelope"></i> info@ai-solution.com</li>
+          <li onclick="openMap()" style="cursor: pointer;"><i class="fas fa-map-marker-alt"></i> Sunderland, UK</li>
+          <li onclick="makeCall()" style="cursor: pointer;"><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+          <li onclick="sendEmail()" style="cursor: pointer;"><i class="fas fa-envelope"></i> info@ai-solution.com</li>
         </ul>
       </div>
 
@@ -280,57 +410,97 @@
     </div>
   </footer>
 
-<script src="script.js"></script>
-<script>
-    // Form submission handler with popup alerts
+  <script src="script.js"></script>
+  <script>
+    // ========== CONTACT CARD INTERACTIONS ==========
+    
+    function openMap() {
+      const address = encodeURIComponent("123 AI Boulevard, Sunderland, SR1 1AA, UK");
+      window.open(`https://www.google.com/maps/search/?api=1&query=${address}`, '_blank');
+    }
+    
+    function makeCall() {
+      const phoneNumber = "+15551234567";
+      if (confirm(`Call ${phoneNumber}?`)) {
+        window.location.href = `tel:${phoneNumber}`;
+      }
+    }
+    
+    function sendEmail() {
+      const email = "info@ai-solution.com";
+      window.location.href = `mailto:${email}?subject=AI Solutions Inquiry&body=Hello, I would like to learn more about your AI solutions.`;
+    }
+    
+    function showBusinessHours() {
+      const modal = document.getElementById('hoursModal');
+      modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeModal() {
+      const modal = document.getElementById('hoursModal');
+      modal.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+    
+    window.onclick = function(event) {
+      const modal = document.getElementById('hoursModal');
+      if (event.target === modal) {
+        closeModal();
+      }
+    }
+    
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeModal();
+      }
+    });
+    
+    // ========== FORM SUBMISSION HANDLER WITH JOB TITLE ==========
     document.getElementById('contactForm').addEventListener('submit', async function(e) {
         e.preventDefault();
         
-        // Get form values
         const name = document.getElementById('fullName').value.trim();
         const email = document.getElementById('email').value.trim();
         const phone = document.getElementById('phone').value.trim();
+        const jobTitle = document.getElementById('jobTitle').value.trim();
         const company = document.getElementById('company').value.trim();
         const service = document.getElementById('service').value;
         const message = document.getElementById('message').value.trim();
         
-        // Check ALL fields
-        if (!name || !email || !phone || !company || !service || !message) {
+        // Check ALL fields including Job Title
+        if (!name || !email || !phone || !jobTitle || !company || !service || !message) {
             showCustomAlert('error', 'Missing Fields', 'Please fill in ALL fields before submitting.');
             return;
         }
         
-        // Email validation
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
             showCustomAlert('error', 'Invalid Email', 'Please enter a valid email address.');
             return;
         }
         
-        // Phone validation
         if (phone.length < 10) {
             showCustomAlert('error', 'Invalid Phone', 'Please enter a valid phone number (minimum 10 digits).');
             return;
         }
         
-        // Show loading state
         const submitBtn = document.querySelector('#contactForm .submit-btn');
         const originalText = submitBtn.innerHTML;
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
         submitBtn.disabled = true;
         
-        // Prepare data for backend
         const formData = {
             full_name: name,
             email: email,
             phone: phone,
+            job_title: jobTitle,
             company: company,
             service: service,
             message: message
         };
         
         try {
-            // Send to backend
             const response = await fetch('backend/api/contact.php', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -339,16 +509,12 @@
             
             const result = await response.json();
             
-            // Reset button
             submitBtn.innerHTML = originalText;
             submitBtn.disabled = false;
             
             if (result.success) {
-                // Show success popup
                 showCustomAlert('success', 'Message Sent!', result.message);
                 document.getElementById('contactForm').reset();
-                
-                // Also show in the form
                 const successMsg = document.getElementById('formSuccess');
                 successMsg.textContent = result.message;
                 successMsg.className = 'form-success success';
@@ -360,26 +526,21 @@
                 showCustomAlert('error', 'Submission Failed', result.message);
             }
         } catch (error) {
-            // Reset button
             submitBtn.innerHTML = originalText;
             submitBtn.disabled = false;
             showCustomAlert('error', 'Connection Error', 'Unable to connect to server. Please try again later.');
         }
     });
     
-    // Custom Alert/Popup Function
     function showCustomAlert(type, title, message) {
-        // Remove existing alert if any
         const existingAlert = document.querySelector('.custom-alert');
         if (existingAlert) {
             existingAlert.remove();
         }
         
-        // Create alert element
         const alertDiv = document.createElement('div');
         alertDiv.className = `custom-alert custom-alert-${type}`;
         
-        // Set icon based on type
         let icon = '';
         if (type === 'success') {
             icon = '<i class="fas fa-check-circle"></i>';
@@ -400,10 +561,8 @@
             </div>
         `;
         
-        // Add to body
         document.body.appendChild(alertDiv);
         
-        // Auto remove after 5 seconds
         setTimeout(() => {
             if (alertDiv) {
                 alertDiv.style.animation = 'fadeOut 0.3s ease';
@@ -413,19 +572,6 @@
             }
         }, 5000);
     }
-    
-    // Original showFormMessage function (kept for compatibility)
-    function showFormMessage(message, type) {
-        const successMsg = document.getElementById('formSuccess');
-        if (successMsg) {
-            successMsg.textContent = message;
-            successMsg.className = 'form-success ' + type;
-            successMsg.style.display = 'block';
-            setTimeout(() => {
-                successMsg.style.display = 'none';
-            }, 5000);
-        }
-    }
-</script>
+  </script>
 </body>
 </html>
