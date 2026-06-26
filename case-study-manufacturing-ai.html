@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Case Study: Predictive Maintenance in Manufacturing - How a manufacturer used AI to predict equipment failures and save millions.">
+  <title>Predictive Maintenance in Manufacturing | Case Study | AI Solutions</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .case-study-highlight {
+      background: linear-gradient(135deg, #f0fdf4, #f0f4f8);
+      border-radius: 1rem;
+      padding: 2rem;
+      margin: 2rem 0;
+    }
+    .stats-grid-case {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1.5rem;
+      margin: 1.5rem 0;
+    }
+    .stat-item {
+      text-align: center;
+      padding: 1rem;
+      background: white;
+      border-radius: 0.5rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .stat-item .number {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #0F4C5C;
+    }
+    .stat-item .label {
+      font-size: 0.8rem;
+      color: #7A8B9E;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container navbar">
+      <div class="logo" onclick="location.href='index.html'" style="cursor: pointer;">
+        <span class="logo-icon">✦</span>
+        <img src="images/AI_logo.jpg" alt="AI Logo" style="height: 40px;">
+      </div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="solutions.html">Solutions</a></li>
+          <li><a href="insights.html" class="active">Insights</a></li>
+          <li><a href="testimonials.html">Testimonials</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </nav>
+      <button class="mobile-menu-btn"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="solution-hero" style="background: linear-gradient(135deg, #0F4C5C 0%, #2A9D8F 100%); color: white; padding: 6rem 0 4rem;">
+      <div class="container">
+        <div style="margin-bottom: 2rem;">
+          <a href="javascript:history.back()" style="display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(255,255,255,0.2); color: white; padding: 0.5rem 1rem; border-radius: 2rem; text-decoration: none;">
+            <i class="fas fa-arrow-left"></i> Go Back
+          </a>
+        </div>
+        <div class="hero-badge" style="background: rgba(255,255,255,0.2); color: white;">📊 Case Study</div>
+        <h1 style="font-size: 3rem; margin-bottom: 1rem; color: white;">Predictive Maintenance in Manufacturing</h1>
+        <p style="font-size: 1.2rem; max-width: 700px;">How a manufacturing company used AI to predict equipment failures, saving $5M annually in unplanned downtime.</p>
+        <div style="margin-top: 1.5rem;">
+          <span style="margin-right: 2rem;"><i class="fas fa-calendar-alt"></i> March 2, 2026</span>
+          <span style="margin-right: 2rem;"><i class="fas fa-clock"></i> 6 min read</span>
+          <span><i class="fas fa-tag"></i> Manufacturing, Predictive Maintenance</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Content -->
+    <section class="container" style="padding: 4rem 0;">
+      <div style="max-width: 800px; margin: 0 auto;">
+        
+        <div class="stats-grid-case">
+          <div class="stat-item">
+            <div class="number">45%</div>
+            <div class="label">Downtime Reduction</div>
+          </div>
+          <div class="stat-item">
+            <div class="number">$5M</div>
+            <div class="label">Annual Savings</div>
+          </div>
+          <div class="stat-item">
+            <div class="number">30%</div>
+            <div class="label">Maintenance Cost Reduction</div>
+          </div>
+          <div class="stat-item">
+            <div class="number">95%</div>
+            <div class="label">Failure Prediction Accuracy</div>
+          </div>
+        </div>
+
+        <h2>Executive Summary</h2>
+        <p>This case study examines how <strong>MfgPro</strong>, a global manufacturing company with 20+ factories, implemented AI-powered predictive maintenance to reduce unplanned downtime, extend equipment life, and save millions in operational costs.</p>
+
+        <h2>The Challenge</h2>
+        <p>MfgPro was experiencing significant operational challenges:</p>
+        <ul>
+          <li><strong>Unplanned Downtime:</strong> $10M annual loss from unexpected machine failures</li>
+          <li><strong>Reactive Maintenance:</strong> Fixing equipment only after failure</li>
+          <li><strong>High Maintenance Costs:</strong> Inefficient use of maintenance resources</li>
+          <li><strong>Production Delays:</strong> Missed delivery deadlines affecting customer trust</li>
+        </ul>
+
+        <h2>The Solution</h2>
+        <p>MfgPro deployed our predictive maintenance solution including:</p>
+        <ul>
+          <li><strong>IoT Sensor Integration:</strong> Real-time machine monitoring</li>
+          <li><strong>AI Failure Prediction:</strong> Machine learning models predicting failures 72 hours in advance</li>
+          <li><strong>Smart Scheduling:</strong> Optimized maintenance planning</li>
+          <li><strong>Analytics Dashboard:</strong> Real-time equipment health monitoring</li>
+        </ul>
+
+        <div class="case-study-highlight">
+          <h3 style="margin-top: 0;">How Predictive Maintenance Works</h3>
+          <ul style="margin-bottom: 0;">
+            <li><strong>Data Collection:</strong> IoT sensors collect vibration, temperature, and performance data</li>
+            <li><strong>AI Analysis:</strong> Models detect anomalies and predict failures</li>
+            <li><strong>Early Warning:</strong> Alerts sent 72 hours before predicted failure</li>
+            <li><strong>Preventive Action:</strong> Maintenance scheduled during planned downtime</li>
+          </ul>
+        </div>
+
+        <h2>The Results</h2>
+        <ul>
+          <li><strong>45% reduction in unplanned downtime</strong> - From 15% to 8%</li>
+          <li><strong>$5M annual savings</strong> - Through reduced downtime and optimized maintenance</li>
+          <li><strong>30% reduction in maintenance costs</strong> - Better resource allocation</li>
+          <li><strong>95% prediction accuracy</strong> - Highly reliable failure predictions</li>
+          <li><strong>20% increase in equipment life</strong> - Extended asset lifespan</li>
+        </ul>
+
+        <div style="background: #0F4C5C; color: white; padding: 2rem; border-radius: 1rem; margin: 2rem 0;">
+          <p style="font-size: 1.2rem; margin-bottom: 0; font-style: italic;">"Predictive maintenance has completely transformed our operations. We now fix machines before they break, not after. The savings have been tremendous."</p>
+          <p style="margin-top: 1rem;">— Chief Operations Officer, MfgPro</p>
+        </div>
+
+        <h2>Lessons Learned</h2>
+        <ul>
+          <li>Start with the most critical equipment first</li>
+          <li>Invest in quality IoT sensors and data infrastructure</li>
+          <li>Train maintenance teams on the new system</li>
+          <li>Combine AI predictions with human expertise</li>
+        </ul>
+
+        <div style="text-align: center; margin-top: 3rem;">
+          <a href="contact.html" class="btn btn-primary" style="padding: 1rem 2rem;">Transform Your Manufacturing →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="chatbot-toggle" onclick="toggleChatbot()"><i class="fas fa-comment-dots"></i></div>
+  <div class="chatbot-container" id="chatbot">...</div>
+    <footer>
+    <div class="container footer-grid">
+      <div>
+        <div class="footer-logo" onclick="location.href='index.html'" style="cursor: pointer;">
+          <span class="logo-icon">✦</span>
+          AI
+        </div>
+        <p>AI-powered solutions for modern workplaces.</p>
+        <div class="social-icons">
+          <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+          <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+          <a href="https://youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+
+      <div>
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="solutions.html">Solutions</a></li>
+          <li><a href="insights.html">Insights</a></li>
+          <li><a href="testimonials.html">Testimonials</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Solutions</h3>
+        <ul>
+          <li><a href="ai-automation.html">AI Automation</a></li>
+          <li><a href="ai-chatbots.html">Chatbots</a></li>
+          <li><a href="smart-analytics.html">Smart Analytics</a></li>
+          <li><a href="cloud-ai.html">Cloud AI</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Contact Us</h3>
+        <ul class="contact-info">
+          <li onclick="openMap()" style="cursor: pointer;">
+            <i class="fas fa-map-marker-alt"></i> 
+            <span>Sunderland, UK</span>
+          </li>
+          <li onclick="makeCall()" style="cursor: pointer;">
+            <i class="fas fa-phone"></i> 
+            <span>+1 (555) 123-4567</span>
+          </li>
+          <li onclick="sendEmail()" style="cursor: pointer;">
+            <i class="fas fa-envelope"></i> 
+            <span>info@ai-solution.com</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="newsletter">
+        <h3>Newsletter</h3>
+        <p>Subscribe for latest AI updates.</p>
+        <div class="newsletter-form">
+          <input type="email" id="newsletterEmail" placeholder="Enter your email">
+          <button class="btn btn-primary" onclick="subscribeNewsletter()">
+            Subscribe <i class="fas fa-paper-plane"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="copyright">
+      <p>© 2026 AI-Solution. All rights reserved.</p>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>

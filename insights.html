@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="AI Solutions - Latest insights, trends, and articles about artificial intelligence in the workplace.">
-  <title>AI Solutions | Insights & Articles</title>
+  <meta name="description" content="AI Solutions - Latest insights, case studies, articles, and blogs about artificial intelligence in the workplace.">
+  <title>AI Solutions | Insights, Case Studies, Articles & Blogs</title>
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
@@ -13,35 +13,85 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   
   <link rel="stylesheet" href="style.css">
+  <style>
+    .content-badge {
+      display: inline-block;
+      padding: 0.2rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    .case-badge {
+      background: #FDF4F0;
+      color: #E76F51;
+    }
+    .article-badge {
+      background: #D9F0F4;
+      color: #0F4C5C;
+    }
+    .blog-badge {
+      background: #F0F4F8;
+      color: #2A9D8F;
+    }
+    .section-header-custom {
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid #f0f4f8;
+    }
+    .section-header-custom .section-tag {
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-size: 0.8rem;
+      display: inline-block;
+      margin-bottom: 0.5rem;
+    }
+    .section-header-custom h2 {
+      font-size: 2rem;
+      margin-bottom: 0.25rem;
+    }
+    .section-header-custom p {
+      color: #7A8B9E;
+      margin-bottom: 0;
+    }
+    .section-divider {
+      height: 2px;
+      background: linear-gradient(90deg, #0F4C5C 0%, #2A9D8F 50%, #E76F51 100%);
+      width: 100px;
+      margin: 1rem 0;
+      border-radius: 2px;
+    }
+  </style>
 </head>
 <body>
 
   <!-- HEADER - Modern Glassmorphism Navbar -->
-<header>
-  <div class="container navbar">
-    <div class="logo">
-      <span class="logo-icon">✦</span>
-      <img src="images/AI_logo.jpg" alt="AI Logo">
+  <header>
+    <div class="container navbar">
+      <div class="logo" onclick="location.href='index.html'" style="cursor: pointer;">
+        <span class="logo-icon">✦</span>
+        <img src="images/AI_logo.jpg" alt="AI Logo" style="height: 40px;">
+      </div>
+
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="solutions.html">Solutions</a></li>
+          <li><a href="insights.html" class="active">Insights</a></li>
+          <li><a href="testimonials.html">Testimonials</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </nav>
+
+      <button class="mobile-menu-btn" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
-
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="solutions.html">Solutions</a></li>
-        <li><a href="insights.html">Insights</a></li>
-        <li><a href="testimonials.html" class="active">Testimonials</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
-        <li><a href="contact.html">Contact Us</a></li>
-      </ul>
-    </nav>
-
-    <button class="mobile-menu-btn" aria-label="Menu">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-  </div>
-</header>
+  </header>
 
   <main>
     <!-- PAGE HEADER SECTION -->
@@ -50,11 +100,11 @@
         <div class="page-header-content">
           <div class="hero-badge">
             <span class="badge-dot"></span>
-            Latest Updates
+            Knowledge Hub
           </div>
-          <h1 class="page-title">Insights & Articles</h1>
+          <h1 class="page-title">Insights, Case Studies, Articles & Blogs</h1>
           <p class="page-description">
-            Stay ahead with the latest trends, news, and expert insights 
+            Stay ahead with real-world case studies, expert articles, industry blogs, and the latest trends 
             in artificial intelligence and workplace innovation.
           </p>
         </div>
@@ -65,7 +115,16 @@
     <section class="container filter-section">
       <div class="filter-wrapper">
         <div class="filter-bar">
-          <label><i class="fas fa-filter"></i> Filter by Category:</label>
+          <label><i class="fas fa-filter"></i> Filter by:</label>
+          <select id="typeFilter">
+            <option value="all">All Content</option>
+            <option value="case-study">📊 Case Studies</option>
+            <option value="article">📄 Articles</option>
+            <option value="blog">📝 Blogs</option>
+          </select>
+        </div>
+        <div class="filter-bar">
+          <label><i class="fas fa-tag"></i> Category:</label>
           <select id="categoryFilter">
             <option value="all">All Categories</option>
             <option value="ai">🤖 AI Trends</option>
@@ -80,91 +139,312 @@
       </div>
     </section>
 
-    <!-- INSIGHTS GRID SECTION -->
-    <section class="container insights-section">
-      <div class="insights-grid" id="insightsGrid">
-        <div class="insight-card" data-category="ai">
-          <div class="insight-icon">
-            <i class="fas fa-brain"></i>
+    <!-- ============================================================ -->
+    <!-- CASE STUDIES SECTION -->
+    <!-- ============================================================ -->
+    <section class="container insights-section" id="caseStudiesSection">
+      <div class="section-header-custom">
+        <span class="section-tag" style="color: #E76F51;">Real-World Success</span>
+        <h2><i class="fas fa-briefcase" style="color: #E76F51;"></i> Case Studies</h2>
+        <div class="section-divider"></div>
+        <p>Real-world implementations and success stories from businesses that transformed with AI</p>
+      </div>
+
+      <div class="insights-grid" id="caseStudiesGrid">
+        <!-- Case Study 1: Retail -->
+        <div class="insight-card" data-type="case-study" data-category="business">
+          <div class="insight-icon" style="background: linear-gradient(135deg, #FDF4F0, #D9F0F4);">
+            <i class="fas fa-store" style="color: #E76F51;"></i>
           </div>
+          <span class="content-badge case-badge">📊 Case Study</span>
+          <h3>Retail Digital Transformation with AI</h3>
+          <p>How a leading retailer used AI-powered automation to reduce inventory costs by 25% and increase customer satisfaction by 40%.</p>
+          <div class="insight-meta">
+            <span class="date"><i class="fas fa-calendar-alt"></i> March 12, 2026</span>
+            <span class="category">Business</span>
+          </div>
+          <a href="case-study-retail-ai.html" class="card-link">View Case Study <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <!-- Case Study 2: Healthcare -->
+        <div class="insight-card" data-type="case-study" data-category="ai">
+          <div class="insight-icon" style="background: linear-gradient(135deg, #FDF4F0, #D9F0F4);">
+            <i class="fas fa-heartbeat" style="color: #E76F51;"></i>
+          </div>
+          <span class="content-badge case-badge">📊 Case Study</span>
+          <h3>AI in Healthcare: Patient Care Transformation</h3>
+          <p>How a hospital network implemented AI-powered patient monitoring and reduced emergency room wait times by 60%.</p>
+          <div class="insight-meta">
+            <span class="date"><i class="fas fa-calendar-alt"></i> March 8, 2026</span>
+            <span class="category">AI Trends</span>
+          </div>
+          <a href="case-study-healthcare-ai.html" class="card-link">View Case Study <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <!-- Case Study 3: Manufacturing -->
+        <div class="insight-card" data-type="case-study" data-category="tech">
+          <div class="insight-icon" style="background: linear-gradient(135deg, #FDF4F0, #D9F0F4);">
+            <i class="fas fa-industry" style="color: #E76F51;"></i>
+          </div>
+          <span class="content-badge case-badge">📊 Case Study</span>
+          <h3>Predictive Maintenance in Manufacturing</h3>
+          <p>How a manufacturing company used AI to predict equipment failures, saving $5M annually in unplanned downtime.</p>
+          <div class="insight-meta">
+            <span class="date"><i class="fas fa-calendar-alt"></i> March 2, 2026</span>
+            <span class="category">Technology</span>
+          </div>
+          <a href="case-study-manufacturing-ai.html" class="card-link">View Case Study <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <!-- Case Study 4: Finance -->
+        <div class="insight-card" data-type="case-study" data-category="business">
+          <div class="insight-icon" style="background: linear-gradient(135deg, #FDF4F0, #D9F0F4);">
+            <i class="fas fa-university" style="color: #E76F51;"></i>
+          </div>
+          <span class="content-badge case-badge">📊 Case Study</span>
+          <h3>AI-Driven Fraud Detection in Banking</h3>
+          <p>How a major bank deployed AI to detect fraudulent transactions in real-time, reducing fraud losses by 70%.</p>
+          <div class="insight-meta">
+            <span class="date"><i class="fas fa-calendar-alt"></i> February 25, 2026</span>
+            <span class="category">Business</span>
+          </div>
+          <a href="case-study-finance-ai.html" class="card-link">View Case Study <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <!-- Case Study 5: Digital Transformation -->
+        <div class="insight-card" data-type="case-study" data-category="business">
+          <div class="insight-icon" style="background: linear-gradient(135deg, #FDF4F0, #D9F0F4);">
+            <i class="fas fa-rocket" style="color: #E76F51;"></i>
+          </div>
+          <span class="content-badge case-badge">📊 Case Study</span>
+          <h3>Digital Transformation Success Stories</h3>
+          <p>Case studies of companies that transformed their operations with AI and achieved remarkable results.</p>
+          <div class="insight-meta">
+            <span class="date"><i class="fas fa-calendar-alt"></i> February 20, 2026</span>
+            <span class="category">Business</span>
+          </div>
+          <a href="case-study-digital-transformation-ai.html" class="card-link">View Case Study <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- ARTICLES SECTION -->
+    <!-- ============================================================ -->
+    <section class="container insights-section" id="articlesSection" style="padding-top: 2rem;">
+      <div class="section-header-custom">
+        <span class="section-tag" style="color: #0F4C5C;">Expert Insights</span>
+        <h2><i class="fas fa-newspaper" style="color: #0F4C5C;"></i> Articles</h2>
+        <div class="section-divider"></div>
+        <p>In-depth articles on AI trends, technology breakthroughs, and industry insights</p>
+      </div>
+
+      <div class="insights-grid" id="articlesGrid">
+        <!-- Article 1: Future of AI -->
+        <div class="insight-card" data-type="article" data-category="ai">
+          <div class="insight-icon" style="background: linear-gradient(135deg, #D9F0F4, #FDF4F0);">
+            <i class="fas fa-brain" style="color: #0F4C5C;"></i>
+          </div>
+          <span class="content-badge article-badge">📄 Article</span>
           <h3>The Future of AI in Workplace</h3>
-          <p>Discover how artificial intelligence is reshaping the modern workplace and driving productivity.</p>
+          <p>Discover how artificial intelligence is reshaping the modern workplace and driving productivity across industries.</p>
           <div class="insight-meta">
             <span class="date"><i class="fas fa-calendar-alt"></i> March 15, 2026</span>
             <span class="category">AI Trends</span>
           </div>
-          <a href="future-of-ai-workplace.html" class="card-link">Read more <i class="fas fa-arrow-right"></i></a>
+          <a href="future-of-ai-workplace.html" class="card-link">Read Article <i class="fas fa-arrow-right"></i></a>
         </div>
 
-        <div class="insight-card" data-category="business">
-          <div class="insight-icon">
-            <i class="fas fa-chart-line"></i>
+        <!-- Article 2: ROI of AI -->
+        <div class="insight-card" data-type="article" data-category="business">
+          <div class="insight-icon" style="background: linear-gradient(135deg, #D9F0F4, #FDF4F0);">
+            <i class="fas fa-chart-line" style="color: #0F4C5C;"></i>
           </div>
+          <span class="content-badge article-badge">📄 Article</span>
           <h3>ROI of AI Implementation</h3>
-          <p>Learn about the measurable returns businesses achieve after adopting AI solutions.</p>
+          <p>Learn about the measurable returns businesses achieve after adopting AI solutions, with real data and case examples.</p>
           <div class="insight-meta">
             <span class="date"><i class="fas fa-calendar-alt"></i> March 10, 2026</span>
             <span class="category">Business</span>
           </div>
-          <a href="roi-of-ai-implementation.html" class="card-link">Read more <i class="fas fa-arrow-right"></i></a>
+          <a href="roi-of-ai-implementation.html" class="card-link">Read Article <i class="fas fa-arrow-right"></i></a>
         </div>
 
-        <div class="insight-card" data-category="tech">
-          <div class="insight-icon">
-            <i class="fas fa-microchip"></i>
+        <!-- Article 3: NLP Breakthroughs -->
+        <div class="insight-card" data-type="article" data-category="tech">
+          <div class="insight-icon" style="background: linear-gradient(135deg, #D9F0F4, #FDF4F0);">
+            <i class="fas fa-microchip" style="color: #0F4C5C;"></i>
           </div>
+          <span class="content-badge article-badge">📄 Article</span>
           <h3>Natural Language Processing Breakthroughs</h3>
-          <p>Latest advancements in NLP and how they improve human-computer interaction.</p>
+          <p>Latest advancements in NLP and how they improve human-computer interaction across applications.</p>
           <div class="insight-meta">
             <span class="date"><i class="fas fa-calendar-alt"></i> March 5, 2026</span>
             <span class="category">Technology</span>
           </div>
-          <a href="nlp-breakthroughs.html" class="card-link">Read more <i class="fas fa-arrow-right"></i></a>
+          <a href="nlp-breakthroughs.html" class="card-link">Read Article <i class="fas fa-arrow-right"></i></a>
         </div>
 
-        <div class="insight-card" data-category="ai">
-          <div class="insight-icon">
-            <i class="fas fa-balance-scale"></i>
+        <!-- Article 4: Ethical AI -->
+        <div class="insight-card" data-type="article" data-category="ai">
+          <div class="insight-icon" style="background: linear-gradient(135deg, #D9F0F4, #FDF4F0);">
+            <i class="fas fa-balance-scale" style="color: #0F4C5C;"></i>
           </div>
+          <span class="content-badge article-badge">📄 Article</span>
           <h3>Ethical AI: Best Practices</h3>
           <p>Guidelines for implementing responsible and ethical AI systems in your organization.</p>
           <div class="insight-meta">
             <span class="date"><i class="fas fa-calendar-alt"></i> February 28, 2026</span>
             <span class="category">AI Trends</span>
           </div>
-          <a href="ethical-ai-best-practices.html" class="card-link">Read more <i class="fas fa-arrow-right"></i></a>
+          <a href="ethical-ai-best-practices.html" class="card-link">Read Article <i class="fas fa-arrow-right"></i></a>
         </div>
 
-        <div class="insight-card" data-category="business">
-          <div class="insight-icon">
-            <i class="fas fa-rocket"></i>
+        <!-- Article 5: ML Trends -->
+        <div class="insight-card" data-type="article" data-category="tech">
+          <div class="insight-icon" style="background: linear-gradient(135deg, #D9F0F4, #FDF4F0);">
+            <i class="fas fa-chart-line" style="color: #0F4C5C;"></i>
           </div>
-          <h3>Digital Transformation Success Stories</h3>
-          <p>Case studies of companies that transformed their operations with AI.</p>
-          <div class="insight-meta">
-            <span class="date"><i class="fas fa-calendar-alt"></i> February 20, 2026</span>
-            <span class="category">Business</span>
-          </div>
-          <a href="digital-transformation-success.html" class="card-link">Read more <i class="fas fa-arrow-right"></i></a>
-        </div>
-
-        <div class="insight-card" data-category="tech">
-          <div class="insight-icon">
-            <i class="fas fa-chart-line"></i>
-          </div>
+          <span class="content-badge article-badge">📄 Article</span>
           <h3>Machine Learning Trends 2026</h3>
-          <p>What's next in ML? Explore emerging trends and technologies.</p>
+          <p>What's next in ML? Explore emerging trends and technologies shaping the future of AI.</p>
           <div class="insight-meta">
             <span class="date"><i class="fas fa-calendar-alt"></i> February 15, 2026</span>
             <span class="category">Technology</span>
           </div>
-          <a href="ml-trends-2026.html" class="card-link">Read more <i class="fas fa-arrow-right"></i></a>
+          <a href="ml-trends-2026.html" class="card-link">Read Article <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- BLOGS SECTION -->
+    <!-- ============================================================ -->
+    <section class="container insights-section" id="blogsSection" style="padding-top: 2rem;">
+      <div class="section-header-custom">
+        <span class="section-tag" style="color: #2A9D8F;">Thought Leadership</span>
+        <h2><i class="fas fa-pen-fancy" style="color: #2A9D8F;"></i> Blogs</h2>
+        <div class="section-divider"></div>
+        <p>Expert opinions, thought leadership, and practical insights from AI industry leaders</p>
+      </div>
+
+      <div class="insights-grid" id="blogsGrid">
+        <!-- Blog 1: AI Strategy -->
+        <div class="insight-card" data-type="blog" data-category="business">
+          <div class="insight-icon" style="background: linear-gradient(135deg, #F0F4F8, #D9F0F4);">
+            <i class="fas fa-lightbulb" style="color: #2A9D8F;"></i>
+          </div>
+          <span class="content-badge blog-badge">📝 Blog</span>
+          <h3>5 AI Strategies That Will Transform Your Business in 2026</h3>
+          <p>Discover the top 5 AI strategies that industry leaders are using to stay ahead of the competition in 2026.</p>
+          <div class="insight-meta">
+            <span class="date"><i class="fas fa-calendar-alt"></i> March 18, 2026</span>
+            <span class="category">Business</span>
+          </div>
+          <a href="blog-ai-strategies-2026.html" class="card-link">Read Blog <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <!-- Blog 2: AI and Sustainability -->
+        <div class="insight-card" data-type="blog" data-category="ai">
+          <div class="insight-icon" style="background: linear-gradient(135deg, #F0F4F8, #D9F0F4);">
+            <i class="fas fa-leaf" style="color: #2A9D8F;"></i>
+          </div>
+          <span class="content-badge blog-badge">📝 Blog</span>
+          <h3>How AI is Driving Sustainability and Green Innovation</h3>
+          <p>Explore how artificial intelligence is helping organizations reduce their carbon footprint and build sustainable practices.</p>
+          <div class="insight-meta">
+            <span class="date"><i class="fas fa-calendar-alt"></i> March 14, 2026</span>
+            <span class="category">AI Trends</span>
+          </div>
+          <a href="blog-ai-sustainability.html" class="card-link">Read Blog <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <!-- Blog 3: The Human-AI Partnership -->
+        <div class="insight-card" data-type="blog" data-category="tech">
+          <div class="insight-icon" style="background: linear-gradient(135deg, #F0F4F8, #D9F0F4);">
+            <i class="fas fa-handshake" style="color: #2A9D8F;"></i>
+          </div>
+          <span class="content-badge blog-badge">📝 Blog</span>
+          <h3>The Human-AI Partnership: Collaboration Over Replacement</h3>
+          <p>Why the future of work is about humans and AI working together, not AI replacing humans.</p>
+          <div class="insight-meta">
+            <span class="date"><i class="fas fa-calendar-alt"></i> March 10, 2026</span>
+            <span class="category">Technology</span>
+          </div>
+          <a href="blog-human-ai-partnership.html" class="card-link">Read Blog <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <!-- Blog 4: AI in Small Business -->
+        <div class="insight-card" data-type="blog" data-category="business">
+          <div class="insight-icon" style="background: linear-gradient(135deg, #F0F4F8, #D9F0F4);">
+            <i class="fas fa-chart-line" style="color: #2A9D8F;"></i>
+          </div>
+          <span class="content-badge blog-badge">📝 Blog</span>
+          <h3>AI for Small Businesses: Affordable Solutions for Growth</h3>
+          <p>Discover affordable AI solutions that can help small businesses compete with larger enterprises.</p>
+          <div class="insight-meta">
+            <span class="date"><i class="fas fa-calendar-alt"></i> March 6, 2026</span>
+            <span class="category">Business</span>
+          </div>
+          <a href="blog-ai-small-business.html" class="card-link">Read Blog <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <!-- Blog 5: AI Ethics and Governance -->
+        <div class="insight-card" data-type="blog" data-category="ai">
+          <div class="insight-icon" style="background: linear-gradient(135deg, #F0F4F8, #D9F0F4);">
+            <i class="fas fa-balance-scale" style="color: #2A9D8F;"></i>
+          </div>
+          <span class="content-badge blog-badge">📝 Blog</span>
+          <h3>AI Ethics and Governance: Building Trust in AI Systems</h3>
+          <p>Why trust matters in AI and how organizations can build responsible AI governance frameworks.</p>
+          <div class="insight-meta">
+            <span class="date"><i class="fas fa-calendar-alt"></i> March 2, 2026</span>
+            <span class="category">AI Trends</span>
+          </div>
+          <a href="blog-ai-ethics-governance.html" class="card-link">Read Blog <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <!-- Blog 6: The Future of AI in 2030 -->
+        <div class="insight-card" data-type="blog" data-category="tech">
+          <div class="insight-icon" style="background: linear-gradient(135deg, #F0F4F8, #D9F0F4);">
+            <i class="fas fa-rocket" style="color: #2A9D8F;"></i>
+          </div>
+          <span class="content-badge blog-badge">📝 Blog</span>
+          <h3>The Future of AI: What to Expect by 2030</h3>
+          <p>A forward-looking exploration of where AI is heading and how it will reshape industries and society.</p>
+          <div class="insight-meta">
+            <span class="date"><i class="fas fa-calendar-alt"></i> February 25, 2026</span>
+            <span class="category">Technology</span>
+          </div>
+          <a href="blog-future-ai-2030.html" class="card-link">Read Blog <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- No Results Message -->
+    <div class="container">
+      <div class="no-results" id="noResults" style="display: none; padding: 4rem 0;">
+        <i class="fas fa-search" style="font-size: 3rem; color: #CDD5DF; display: block; text-align: center; margin-bottom: 1rem;"></i>
+        <h3 style="text-align: center;">No results found</h3>
+        <p style="text-align: center; color: #7A8B9E;">Try adjusting your search or filter criteria</p>
+      </div>
+    </div>
+
+    <!-- CTA SECTION -->
+    <section class="cta-section" style="margin-top: 2rem;">
+      <div class="container cta">
+        <div class="cta-content">
+          <h2>Want to Contribute?</h2>
+          <p>Share your insights, case studies, or blog ideas with our community.</p>
+          <button class="btn btn-primary btn-large" onclick="window.location.href='contact.html'">
+            Get in Touch <i class="fas fa-arrow-right"></i>
+          </button>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- CHATBOT - Enhanced design -->
+  <!-- CHATBOT -->
   <div class="chatbot-toggle" onclick="toggleChatbot()">
     <i class="fas fa-comment-dots"></i>
   </div>
@@ -178,157 +458,131 @@
       </div>
       <span onclick="toggleChatbot()" class="close-btn">✖</span>
     </div>
-
     <div class="chatbot-body" id="chatBody">
       <div class="bot-message">
-        <div class="bot-avatar">
-          <i class="fas fa-robot"></i>
-        </div>
-        <div class="message-content">
-          Hello! Want the latest insights?
-        </div>
+        <div class="bot-avatar"><i class="fas fa-robot"></i></div>
+        <div class="message-content">Hello! Want the latest insights?</div>
       </div>
     </div>
-
     <div class="chatbot-footer">
       <input type="text" id="userInput" placeholder="Type a message..." onkeypress="if(event.key === 'Enter') sendMessage()">
-      <button onclick="sendMessage()">
-        <i class="fas fa-paper-plane"></i>
-      </button>
+      <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
     </div>
   </div>
 
-  <!-- FOOTER - Modern multi-column -->
+  <!-- FOOTER -->
   <footer>
-  <div class="container footer-grid">
-    <div>
-      <div class="footer-logo" onclick="location.href='index.html'" style="cursor: pointer;">
-        <span class="logo-icon">✦</span>
-        AI
+    <div class="container footer-grid">
+      <div>
+        <div class="footer-logo" onclick="location.href='index.html'" style="cursor: pointer;">
+          <span class="logo-icon">✦</span>
+          AI
+        </div>
+        <p>AI-powered solutions for modern workplaces.</p>
+        <div class="social-icons">
+          <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+          <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+          <a href="https://youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+        </div>
       </div>
-      <p>AI-powered solutions for modern workplaces.</p>
-      <div class="social-icons">
-        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
-        <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
-        <a href="https://youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+
+      <div>
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="solutions.html">Solutions</a></li>
+          <li><a href="insights.html">Insights</a></li>
+          <li><a href="testimonials.html">Testimonials</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
       </div>
-    </div>
 
-    <div>
-      <h3>Quick Links</h3>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="solutions.html">Solutions</a></li>
-        <li><a href="insights.html">Insights</a></li>
-        <li><a href="testimonials.html">Testimonials</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
-        <li><a href="contact.html">Contact Us</a></li>
-      </ul>
-    </div>
+      <div>
+        <h3>Solutions</h3>
+        <ul>
+          <li><a href="ai-automation.html">AI Automation</a></li>
+          <li><a href="ai-chatbots.html">Chatbots</a></li>
+          <li><a href="smart-analytics.html">Smart Analytics</a></li>
+          <li><a href="cloud-ai.html">Cloud AI</a></li>
+        </ul>
+      </div>
 
-    <div>
-      <h3>Solutions</h3>
-      <ul>
-        <li><a href="ai-automation.html">AI Automation</a></li>
-        <li><a href="ai-chatbots.html">Chatbots</a></li>
-        <li><a href="smart-analytics.html">Smart Analytics</a></li>
-        <li><a href="cloud-ai.html">Cloud AI</a></li>
-      </ul>
-    </div>
+      <div>
+        <h3>Contact Us</h3>
+        <ul class="contact-info">
+          <li onclick="openMap()" style="cursor: pointer;"><i class="fas fa-map-marker-alt"></i> Sunderland, UK</li>
+          <li onclick="makeCall()" style="cursor: pointer;"><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+          <li onclick="sendEmail()" style="cursor: pointer;"><i class="fas fa-envelope"></i> info@ai-solution.com</li>
+        </ul>
+      </div>
 
-    <div>
-      <h3>Contact Us</h3>
-      <ul class="contact-info">
-        <li onclick="openMap()" style="cursor: pointer;">
-          <i class="fas fa-map-marker-alt"></i> 
-          <span>Sunderland, UK</span>
-        </li>
-        <li onclick="makeCall()" style="cursor: pointer;">
-          <i class="fas fa-phone"></i> 
-          <span>+1 (555) 123-4567</span>
-        </li>
-        <li onclick="sendEmail()" style="cursor: pointer;">
-          <i class="fas fa-envelope"></i> 
-          <span>info@ai-solution.com</span>
-        </li>
-      </ul>
-    </div>
-
-    <div class="newsletter">
-      <h3>Newsletter</h3>
-      <p>Subscribe for latest AI updates.</p>
-      <div class="newsletter-form">
-        <input type="email" id="newsletterEmail" placeholder="Enter your email">
-        <button class="btn btn-primary" onclick="subscribeNewsletter()">
-          Subscribe <i class="fas fa-paper-plane"></i>
-        </button>
+      <div class="newsletter">
+        <h3>Newsletter</h3>
+        <p>Subscribe for latest AI updates.</p>
+        <div class="newsletter-form">
+          <input type="email" id="newsletterEmail" placeholder="Enter your email">
+          <button class="btn btn-primary" onclick="subscribeNewsletter()">
+            Subscribe <i class="fas fa-paper-plane"></i>
+          </button>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="copyright">
-    <p>© 2026 AI-Solution. All rights reserved.</p>
-  </div>
-</footer>
+    <div class="copyright">
+      <p>© 2026 AI-Solution. All rights reserved.</p>
+    </div>
+  </footer>
 
   <script src="script.js"></script>
   <script>
-    // Filter and Search functionality
-    const filterSelect = document.getElementById('categoryFilter');
+    // ========== FILTER FUNCTIONALITY ==========
+    
+    const typeFilter = document.getElementById('typeFilter');
+    const categoryFilter = document.getElementById('categoryFilter');
     const searchInput = document.getElementById('searchInput');
-    const cards = document.querySelectorAll('.insight-card');
+    const allCards = document.querySelectorAll('.insight-card');
+    const noResults = document.getElementById('noResults');
 
     function filterInsights() {
-      const category = filterSelect.value;
+      const typeValue = typeFilter.value;
+      const categoryValue = categoryFilter.value;
       const searchTerm = searchInput.value.toLowerCase();
 
-      cards.forEach(card => {
-        const matchesCategory = category === 'all' || card.dataset.category === category;
+      let visibleCount = 0;
+
+      allCards.forEach(card => {
+        const matchesType = typeValue === 'all' || card.dataset.type === typeValue;
+        const matchesCategory = categoryValue === 'all' || card.dataset.category === categoryValue;
         const title = card.querySelector('h3').textContent.toLowerCase();
         const content = card.querySelector('p').textContent.toLowerCase();
         const matchesSearch = title.includes(searchTerm) || content.includes(searchTerm);
         
-        if (matchesCategory && matchesSearch) {
+        if (matchesType && matchesCategory && matchesSearch) {
           card.style.display = 'block';
           card.style.animation = 'fadeUp 0.6s ease forwards';
+          visibleCount++;
         } else {
           card.style.display = 'none';
         }
       });
-    }
 
-    filterSelect.addEventListener('change', filterInsights);
-    searchInput.addEventListener('keyup', filterInsights);
-
-    // No results message
-    function checkNoResults() {
-      const visibleCards = Array.from(cards).filter(card => card.style.display !== 'none');
-      const existingMsg = document.querySelector('.no-results');
-      
-      if (visibleCards.length === 0 && !existingMsg) {
-        const noResultsMsg = document.createElement('div');
-        noResultsMsg.className = 'no-results';
-        noResultsMsg.innerHTML = `
-          <i class="fas fa-search"></i>
-          <h3>No results found</h3>
-          <p>Try adjusting your search or filter criteria</p>
-        `;
-        document.querySelector('.insights-grid').appendChild(noResultsMsg);
-      } else if (visibleCards.length > 0 && existingMsg) {
-        existingMsg.remove();
+      // Show/hide no results message
+      if (visibleCount === 0) {
+        noResults.style.display = 'block';
+      } else {
+        noResults.style.display = 'none';
       }
     }
 
-    // Override filterInsights to include no-results check
-    const originalFilter = filterInsights;
-    window.filterInsights = function() {
-      originalFilter();
-      setTimeout(checkNoResults, 100);
-    };
-    
-    filterSelect.addEventListener('change', window.filterInsights);
-    searchInput.addEventListener('keyup', window.filterInsights);
+    // Event listeners
+    typeFilter.addEventListener('change', filterInsights);
+    categoryFilter.addEventListener('change', filterInsights);
+    searchInput.addEventListener('keyup', filterInsights);
+
+    // Initialize
+    filterInsights();
   </script>
 </body>
 </html>
